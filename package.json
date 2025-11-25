@@ -1,0 +1,50 @@
+{
+  "name": "coderabbit-shadcn-registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Modular shadcn registry for CodeRabbit API integration - framework-agnostic client, storage adapters, and React components",
+  "keywords": [
+    "coderabbit",
+    "shadcn",
+    "registry",
+    "react",
+    "typescript",
+    "convex",
+    "supabase",
+    "postgres",
+    "mysql",
+    "localstorage",
+    "database",
+    "storage",
+    "developer-tools",
+    "api-client",
+    "reports",
+    "analytics"
+  ],
+  "author": "Ray <hi@rmncldyo.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry"
+  },
+  "bugs": {
+    "url": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry/issues"
+  },
+  "homepage": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry#readme",
+  "scripts": {
+    "build": "node scripts/build-flat-registry.js && node scripts/build-bundles.js",
+    "build:bundles": "node scripts/build-bundles.js",
+    "build:verify": "node scripts/verify-flat-registry.js",
+    "build:all": "npm run build && npm run build:verify",
+    "serve": "npx serve public -p 3001",
+    "dev": "npm run build:all && npm run serve",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "shadcn": "latest",
+    "typescript": "^5.9.3"
+  }
+}
