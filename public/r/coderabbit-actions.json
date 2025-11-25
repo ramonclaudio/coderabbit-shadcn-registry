@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-actions",
+  "type": "registry:lib",
+  "title": "CodeRabbit Server Actions",
+  "author": "Ray <hi@rmncldyo.com>",
+  "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/actions.ts",
+      "content": "'use server'\n\n/**\n * CodeRabbit Server Actions for Next.js\n * Handles API calls server-side where CODERABBIT_API_KEY is available\n */\n\nimport { createCodeRabbitClient } from '@/registry/default/coderabbit/lib/client'\nimport type {\n  ReportGenerateRequest,\n  ReportResult,\n} from '@/registry/default/coderabbit/lib/types'\n\n/**\n * Check if CodeRabbit API is configured (server-side)\n * Call this from client components to check configuration status\n */\nexport async function checkCodeRabbitConfig(): Promise<{ isConfigured: boolean }> {\n  const client = createCodeRabbitClient()\n  return { isConfigured: client.isConfigured() }\n}\n\n/**\n * Generate a CodeRabbit report (server-side)\n * This runs on the server where CODERABBIT_API_KEY is available\n *\n * @example\n * ```tsx\n * 'use client'\n * import { generateReportAction } from '@/lib/actions'\n *\n * const { data, error } = await generateReportAction({\n *   from: '2024-01-01',\n *   to: '2024-01-31',\n *   promptTemplate: 'Sprint Report'\n * })\n * ```\n */\nexport async function generateReportAction(\n  request: ReportGenerateRequest\n): Promise<{ data?: ReportResult[]; error?: string }> {\n  try {\n    const client = createCodeRabbitClient()\n\n    if (!client.isConfigured()) {\n      return {\n        error: 'CODERABBIT_API_KEY not configured. Set the environment variable in your .env.local file.',\n      }\n    }\n\n    const results = await client.generateReport(request)\n    return { data: results }\n  } catch (err) {\n    return {\n      error: err instanceof Error ? err.message : 'Failed to generate report',\n    }\n  }\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Import and use checkCodeRabbitConfig() and generateReportAction() in your client components. The API key is read server-side from CODERABBIT_API_KEY env var.",
+  "categories": [
+    "nextjs",
+    "server-actions"
+  ]
+}

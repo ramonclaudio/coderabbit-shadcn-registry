@@ -199,11 +199,33 @@
       "docs": "Create a MySQL connection pool and pass to MySQLStorageAdapter. Run the SQL schema from the adapter file to create the coderabbit_reports table."
     },
     {
+      "name": "coderabbit-actions",
+      "author": "Ray <hi@rmncldyo.com>",
+      "type": "registry:lib",
+      "title": "CodeRabbit Server Actions",
+      "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
+      "categories": [
+        "nextjs",
+        "server-actions"
+      ],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/coderabbit/lib/actions.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "docs": "Import and use checkCodeRabbitConfig() and generateReportAction() in your client components. The API key is read server-side from CODERABBIT_API_KEY env var."
+    },
+    {
       "name": "coderabbit-react",
       "author": "Ray <hi@rmncldyo.com>",
       "type": "registry:hook",
       "title": "CodeRabbit React Hook",
-      "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Works with any storage adapter.",
+      "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Uses server actions by default for secure API key handling in Next.js.",
       "categories": [
         "hooks",
         "react"
@@ -214,7 +236,8 @@
       "registryDependencies": [
         "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
         "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
       ],
       "files": [
         {

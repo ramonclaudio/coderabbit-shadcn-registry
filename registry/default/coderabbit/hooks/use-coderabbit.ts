@@ -3,17 +3,22 @@
  * Works with any storage adapter or no storage at all
  */
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { createCodeRabbitClient } from '@/registry/default/coderabbit/lib/client'
+import {
+  checkCodeRabbitConfig,
+  generateReportAction,
+} from '@/registry/default/coderabbit/lib/actions'
 import type {
   ReportGenerateRequest,
-  StoredReport,
+  ReportResult,
 } from '@/registry/default/coderabbit/lib/types'
 import type { ReportStorageAdapter } from '@/registry/default/coderabbit/lib/storage-adapter'
 
 export interface UseCodeRabbitOptions {
   /**
    * Optional API key (defaults to CODERABBIT_API_KEY env var)
+   * Note: In Next.js, prefer using the server action which has access to env vars
    */
   apiKey?: string
 
@@ -24,9 +29,16 @@ export interface UseCodeRabbitOptions {
   storage?: ReportStorageAdapter
 
   /**
+   * Whether to use server actions (recommended for Next.js)
+   * When true, API calls are made server-side where CODERABBIT_API_KEY is available
+   * @default true
+   */
+  useServerAction?: boolean
+
+  /**
    * Optional callback when report generation completes
    */
-  onSuccess?: (reportId: string | null) => void
+  onSuccess?: (reportId: string | null, results?: ReportResult[]) => void
 
   /**
    * Optional callback when report generation fails
@@ -101,8 +113,22 @@ export function useCodeRabbit(
 ): UseCodeRabbitReturn {
   const [isGenerating, setIsGenerating] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [isConfigured, setIsConfigured] = useState(true) // Optimistic default
 
-  const client = createCodeRabbitClient({ apiKey: options?.apiKey })
+  const useServerAction = options?.useServerAction !== false // Default to true
+
+  // Check configuration status on mount using server action
+  useEffect(() => {
+    if (useServerAction) {
+      checkCodeRabbitConfig().then(({ isConfigured }) => {
+        setIsConfigured(isConfigured)
+      })
+    } else {
+      // Client-side check (only works if apiKey is passed directly)
+      const client = createCodeRabbitClient({ apiKey: options?.apiKey })
+      setIsConfigured(client.isConfigured())
+    }
+  }, [useServerAction, options?.apiKey])
 
   const clearError = useCallback(() => {
     setError(null)
@@ -133,8 +159,21 @@ export function useCodeRabbit(
           })
         }
 
-        // Generate report via API
-        const results = await client.generateReport(request)
+        let results: ReportResult[]
+
+        if (useServerAction) {
+          // Use server action (recommended for Next.js)
+          const response = await generateReportAction(request)
+          if (response.error) {
+            throw new Error(response.error)
+          }
+          results = response.data!
+        } else {
+          // Direct client-side API call (requires apiKey to be passed)
+          const client = createCodeRabbitClient({ apiKey: options?.apiKey })
+          results = await client.generateReport(request)
+        }
+
         const durationMs = Date.now() - startTime
 
         // Update with results if storage available
@@ -143,7 +182,7 @@ export function useCodeRabbit(
         }
 
         // Call success callback
-        options?.onSuccess?.(reportId)
+        options?.onSuccess?.(reportId, results)
 
         return reportId
       } catch (err) {
@@ -165,14 +204,14 @@ export function useCodeRabbit(
         setIsGenerating(false)
       }
     },
-    [client, options],
+    [useServerAction, options],
   )
 
   return {
     generateReport,
     isGenerating,
     error,
-    isConfigured: client.isConfigured(),
+    isConfigured,
     clearError,
   }
 }
