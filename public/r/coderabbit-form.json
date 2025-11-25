@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-form",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:component",
+  "title": "CodeRabbit Report Form",
+  "description": "Full-featured form component for collecting report parameters. Includes template selection, custom prompts, filters, and grouping options.",
+  "categories": [
+    "forms",
+    "components"
+  ],
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/components/coderabbit-report-form.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

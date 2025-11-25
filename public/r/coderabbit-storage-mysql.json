@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-storage-mysql",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit MySQL Adapter",
+  "description": "MySQL/MariaDB adapter with connection pooling. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
+  "categories": [
+    "storage",
+    "database"
+  ],
+  "dependencies": [
+    "mysql2"
+  ],
+  "devDependencies": [
+    "@types/mysql2"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/storage-mysql.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Create a MySQL connection pool and pass to MySQLStorageAdapter. Run the SQL schema from the adapter file to create the coderabbit_reports table."
+}

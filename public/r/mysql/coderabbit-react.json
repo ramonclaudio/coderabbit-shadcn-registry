@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-react",
+  "type": "registry:hook",
+  "title": "CodeRabbit React Hook",
+  "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Works with any storage adapter or no storage at all. Supports success/error callbacks.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/hooks/use-coderabbit.ts",
+      "content": "/**\n * React Hook for CodeRabbit Reports\n * Works with any storage adapter or no storage at all\n */\n\nimport { useState, useCallback } from 'react'\nimport { createCodeRabbitClient } from '@/registry/default/coderabbit/lib/client'\nimport type {\n  ReportGenerateRequest,\n  StoredReport,\n} from '@/registry/default/coderabbit/lib/types'\nimport type { ReportStorageAdapter } from '@/registry/default/coderabbit/lib/storage-adapter'\n\nexport interface UseCodeRabbitOptions {\n  /**\n   * Optional API key (defaults to CODERABBIT_API_KEY env var)\n   */\n  apiKey?: string\n\n  /**\n   * Optional storage adapter for persisting reports\n   * If not provided, reports are not persisted\n   */\n  storage?: ReportStorageAdapter\n\n  /**\n   * Optional callback when report generation completes\n   */\n  onSuccess?: (reportId: string | null) => void\n\n  /**\n   * Optional callback when report generation fails\n   */\n  onError?: (error: string) => void\n}\n\nexport interface UseCodeRabbitReturn {\n  /**\n   * Generate a new report\n   * @returns Report ID if storage is configured, null otherwise\n   */\n  generateReport: (request: ReportGenerateRequest) => Promise<string | null>\n\n  /**\n   * Whether a report is currently being generated\n   */\n  isGenerating: boolean\n\n  /**\n   * Error message if generation failed\n   */\n  error: string | null\n\n  /**\n   * Whether CodeRabbit is configured (API key set)\n   */\n  isConfigured: boolean\n\n  /**\n   * Clear error state\n   */\n  clearError: () => void\n}\n\n/**\n * React hook for generating CodeRabbit reports\n *\n * @example Without storage (direct API call)\n * ```tsx\n * const { generateReport, isGenerating } = useCodeRabbit()\n *\n * const results = await generateReport({\n *   from: '2024-01-01',\n *   to: '2024-01-31',\n *   promptTemplate: 'Sprint Report'\n * })\n * ```\n *\n * @example With localStorage\n * ```tsx\n * import { LocalStorageAdapter } from '@/lib/coderabbit/storage-localstorage'\n *\n * const { generateReport } = useCodeRabbit({\n *   storage: new LocalStorageAdapter()\n * })\n *\n * const reportId = await generateReport({ ... })\n * ```\n *\n * @example With callbacks\n * ```tsx\n * const { generateReport } = useCodeRabbit({\n *   storage: myAdapter,\n *   onSuccess: (id) => toast.success(`Report ${id} generated`),\n *   onError: (err) => toast.error(err)\n * })\n * ```\n */\nexport function useCodeRabbit(\n  options?: UseCodeRabbitOptions,\n): UseCodeRabbitReturn {\n  const [isGenerating, setIsGenerating] = useState(false)\n  const [error, setError] = useState<string | null>(null)\n\n  const client = createCodeRabbitClient({ apiKey: options?.apiKey })\n\n  const clearError = useCallback(() => {\n    setError(null)\n  }, [])\n\n  const generateReport = useCallback(\n    async (request: ReportGenerateRequest): Promise<string | null> => {\n      setIsGenerating(true)\n      setError(null)\n\n      const startTime = Date.now()\n      let reportId: string | null = null\n\n      try {\n        // Create pending record if storage available\n        if (options?.storage) {\n          reportId = await options.storage.create({\n            fromDate: request.from,\n            toDate: request.to,\n            promptTemplate: request.promptTemplate,\n            prompt: request.prompt,\n            groupBy: request.groupBy,\n          })\n        }\n\n        // Generate report via API\n        const results = await client.generateReport(request)\n        const durationMs = Date.now() - startTime\n\n        // Update with results if storage available\n        if (options?.storage && reportId) {\n          await options.storage.updateSuccess(reportId, results, durationMs)\n        }\n\n        // Call success callback\n        options?.onSuccess?.(reportId)\n\n        return reportId\n      } catch (err) {\n        const durationMs = Date.now() - startTime\n        const errorMsg = err instanceof Error ? err.message : String(err)\n\n        setError(errorMsg)\n\n        // Update with error if storage available\n        if (options?.storage && reportId) {\n          await options.storage.updateFailure(reportId, errorMsg, durationMs)\n        }\n\n        // Call error callback\n        options?.onError?.(errorMsg)\n\n        return null\n      } finally {\n        setIsGenerating(false)\n      }\n    },\n    [client, options],\n  )\n\n  return {\n    generateReport,\n    isGenerating,\n    error,\n    isConfigured: client.isConfigured(),\n    clearError,\n  }\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "categories": [
+    "hooks",
+    "react"
+  ]
+}

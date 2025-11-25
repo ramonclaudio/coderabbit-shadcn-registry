@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-localstorage",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:block",
+  "title": "CodeRabbit with LocalStorage",
+  "description": "Complete CodeRabbit integration with browser localStorage. Perfect for prototyping and client-side apps. No database required.",
+  "categories": [
+    "complete",
+    "browser"
+  ],
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-storage-localstorage",
+    "coderabbit-react",
+    "coderabbit-form",
+    "coderabbit-branding"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan)."
+}

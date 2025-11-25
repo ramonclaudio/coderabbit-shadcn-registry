@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-core",
+  "type": "registry:block",
+  "title": "CodeRabbit Core (No Storage)",
+  "description": "Core CodeRabbit functionality without any storage implementation. Includes types, API client, storage adapter interface, and React hook. Perfect for adding your own custom storage backend or using the API client directly.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-react"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). This bundle includes the core API client and React hook but no storage implementation. Add a storage adapter separately or implement your own using the StorageAdapter interface.",
+  "categories": [
+    "core",
+    "api-client"
+  ]
+}

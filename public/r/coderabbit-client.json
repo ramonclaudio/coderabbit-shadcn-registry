@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-client",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit API Client",
+  "description": "Framework-agnostic CodeRabbit API client. Works in Node.js, Deno, Bun, Edge runtimes, and browsers. Single endpoint for generating developer activity reports with 10-minute timeout support.",
+  "categories": [
+    "api-client",
+    "developer-tools"
+  ],
+  "registryDependencies": [
+    "coderabbit-types"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/client.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Set CODERABBIT_API_KEY environment variable or pass apiKey in config. Get API key from https://app.coderabbit.ai/settings/api-keys (requires Pro plan subscription)."
+}

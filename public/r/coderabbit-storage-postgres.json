@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-storage-postgres",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit PostgreSQL Adapter",
+  "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
+  "categories": [
+    "storage",
+    "database"
+  ],
+  "dependencies": [
+    "pg"
+  ],
+  "devDependencies": [
+    "@types/pg"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/storage-postgres.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Create a PostgreSQL connection pool and pass to PostgresStorageAdapter. Run the SQL schema from the adapter file to create the coderabbit_reports table."
+}

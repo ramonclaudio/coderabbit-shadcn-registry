@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-types",
+  "type": "registry:lib",
+  "title": "CodeRabbit Types",
+  "description": "Pure TypeScript types for CodeRabbit API integration. Framework-agnostic type definitions with zero dependencies.",
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/types.ts",
+      "content": "/**\n * CodeRabbit API Types\n * Pure TypeScript types with zero dependencies\n */\n\n/**\n * Report template types\n */\nexport type PromptTemplate =\n  | 'Daily Standup Report'\n  | 'Sprint Report'\n  | 'Release Notes'\n  | 'Custom'\n\n/**\n * Filter parameter types\n */\nexport type FilterParameter =\n  | 'REPOSITORY'\n  | 'LABEL'\n  | 'TEAM'\n  | 'USER'\n  | 'SOURCEBRANCH'\n  | 'TARGETBRANCH'\n  | 'STATE'\n\n/**\n * Filter operator types\n */\nexport type FilterOperator = 'IN' | 'ALL' | 'NOT_IN'\n\n/**\n * Group by types\n */\nexport type GroupBy =\n  | 'NONE'\n  | 'REPOSITORY'\n  | 'LABEL'\n  | 'TEAM'\n  | 'USER'\n  | 'SOURCEBRANCH'\n  | 'TARGETBRANCH'\n  | 'STATE'\n\n/**\n * Filter parameter configuration\n */\nexport interface FilterConfig {\n  parameter: FilterParameter\n  operator: FilterOperator\n  values: string[]\n}\n\n/**\n * Report generation request\n */\nexport interface ReportGenerateRequest {\n  scheduleRange?: 'Dates'\n  from: string // ISO 8601 date format (YYYY-MM-DD)\n  to: string // ISO 8601 date format (YYYY-MM-DD)\n  prompt?: string\n  promptTemplate?: PromptTemplate\n  parameters?: FilterConfig[]\n  groupBy?: GroupBy\n  subgroupBy?: GroupBy\n  orgId?: string\n}\n\n/**\n * Report result group\n */\nexport interface ReportResult {\n  group: string\n  report: string // Markdown formatted\n}\n\n/**\n * Stored report (for persistence layer)\n * Generic schema that works with any database or storage system\n */\nexport interface StoredReport {\n  id: string\n  fromDate: string\n  toDate: string\n  promptTemplate?: string\n  prompt?: string\n  groupBy?: string\n  results: ReportResult[]\n  status: 'pending' | 'completed' | 'failed'\n  error?: string\n  createdAt: number\n  durationMs?: number\n}\n\n/**\n * Constants for validation\n */\nexport const PROMPT_TEMPLATES = [\n  'Daily Standup Report',\n  'Sprint Report',\n  'Release Notes',\n  'Custom',\n] as const\n\nexport const FILTER_PARAMETERS = [\n  'REPOSITORY',\n  'LABEL',\n  'TEAM',\n  'USER',\n  'SOURCEBRANCH',\n  'TARGETBRANCH',\n  'STATE',\n] as const\n\nexport const FILTER_OPERATORS = ['IN', 'ALL', 'NOT_IN'] as const\n\nexport const GROUP_BY_OPTIONS = [\n  'NONE',\n  'REPOSITORY',\n  'LABEL',\n  'TEAM',\n  'USER',\n  'SOURCEBRANCH',\n  'TARGETBRANCH',\n  'STATE',\n] as const\n",
+      "type": "registry:lib"
+    }
+  ],
+  "categories": [
+    "types",
+    "api"
+  ]
+}

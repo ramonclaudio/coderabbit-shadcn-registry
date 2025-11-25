@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-react",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:hook",
+  "title": "CodeRabbit React Hook",
+  "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Works with any storage adapter.",
+  "categories": [
+    "hooks",
+    "react"
+  ],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/hooks/use-coderabbit.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

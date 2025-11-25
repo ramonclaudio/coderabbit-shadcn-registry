@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-storage-supabase",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit Supabase Adapter",
+  "description": "Supabase (PostgreSQL) adapter with Row Level Security support. Includes SQL schema and RLS policies.",
+  "categories": [
+    "storage",
+    "database"
+  ],
+  "dependencies": [
+    "@supabase/supabase-js"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/storage-supabase.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Create a Supabase client and pass to SupabaseStorageAdapter. Run the SQL schema from the adapter file to create the coderabbit_reports table with RLS policies."
+}

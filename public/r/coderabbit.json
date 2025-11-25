@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit",
+  "type": "registry:block",
+  "title": "CodeRabbit with PostgreSQL",
+  "author": "RMNCLDYO",
+  "description": "Complete CodeRabbit integration with PostgreSQL database. Includes types, API client, storage adapter, PostgreSQL storage implementation with connection pooling, React hook, form component, and branding. Features efficient indexing and support for all PostgreSQL hosting providers (Neon, Vercel Postgres, Railway, etc.). Perfect for production applications with PostgreSQL.",
+  "dependencies": [
+    "react",
+    "lucide-react",
+    "pg"
+  ],
+  "devDependencies": [
+    "@types/pg"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-storage-postgres",
+    "coderabbit-react",
+    "coderabbit-form",
+    "coderabbit-branding"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": "",
+    "POSTGRES_HOST": "",
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_DATABASE": "",
+    "POSTGRES_USER": "",
+    "POSTGRES_PASSWORD": ""
+  },
+  "meta": {
+    "source": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry",
+    "license": "MIT",
+    "backend": "postgresql"
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Create the coderabbit_reports table using the SQL schema provided in the adapter. Works with any PostgreSQL provider: Neon, Vercel Postgres, Railway, Supabase (direct connection), AWS RDS, Google Cloud SQL, etc.",
+  "categories": [
+    "complete",
+    "database",
+    "developer-tools"
+  ]
+}

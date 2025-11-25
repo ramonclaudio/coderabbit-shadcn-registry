@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-ui",
+  "type": "registry:block",
+  "title": "CodeRabbit UI Components",
+  "description": "CodeRabbit UI components including the full-featured report form and branding (logo/icon). Includes all required shadcn/ui dependencies. Use this with any storage bundle to get the complete UI.",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types",
+    "coderabbit-form",
+    "coderabbit-branding"
+  ],
+  "categories": [
+    "components",
+    "forms",
+    "branding"
+  ]
+}

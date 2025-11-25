@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-client",
+  "type": "registry:lib",
+  "title": "CodeRabbit API Client",
+  "description": "Framework-agnostic CodeRabbit API client. Works in Node.js, Deno, Bun, Edge runtimes, and browsers. Single endpoint for generating developer activity reports with 10-minute timeout support.",
+  "registryDependencies": [
+    "coderabbit-types"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/client.ts",
+      "content": "/**\n * CodeRabbit API Client\n * Framework-agnostic client that works in Node.js, Deno, Bun, Edge runtimes, and browsers\n */\n\nimport type {\n  ReportGenerateRequest,\n  ReportResult,\n} from '@/registry/default/coderabbit/lib/types'\n\nconst API_BASE_URL = 'https://api.coderabbit.ai/api'\nconst API_VERSION = 'v1'\nconst API_TIMEOUT_MS = 600_000 // 10 minutes\n\n/**\n * CodeRabbit client configuration\n */\nexport interface CodeRabbitClientConfig {\n  apiKey?: string\n  baseUrl?: string\n  timeout?: number\n}\n\n/**\n * Error response from CodeRabbit API\n */\ninterface CodeRabbitErrorResponse {\n  message: string\n  code: string\n  issues?: Array<{ message: string }>\n}\n\n/**\n * CodeRabbit API client\n */\nexport class CodeRabbitClient {\n  private apiKey: string | null\n  private baseUrl: string\n  private timeout: number\n\n  constructor(config?: CodeRabbitClientConfig) {\n    this.apiKey = config?.apiKey ?? this.getApiKeyFromEnv()\n    this.baseUrl = config?.baseUrl ?? API_BASE_URL\n    this.timeout = config?.timeout ?? API_TIMEOUT_MS\n  }\n\n  /**\n   * Get API key from environment (works across runtimes)\n   */\n  private getApiKeyFromEnv(): string | null {\n    // Node.js / Bun / Deno\n    if (typeof process !== 'undefined' && process.env) {\n      return process.env.CODERABBIT_API_KEY ?? null\n    }\n\n    // Deno\n    if (typeof Deno !== 'undefined' && Deno.env) {\n      return Deno.env.get('CODERABBIT_API_KEY') ?? null\n    }\n\n    // Browser (not recommended - use config param instead)\n    return null\n  }\n\n  /**\n   * Check if CodeRabbit is configured\n   */\n  isConfigured(): boolean {\n    return this.apiKey !== null && this.apiKey.length > 0\n  }\n\n  /**\n   * Generate developer activity report\n   *\n   * This endpoint may take up to 10 minutes to respond depending on data volume.\n   *\n   * @param request Report generation parameters\n   * @returns Array of report groups with markdown content\n   * @throws Error if API key not configured or request fails\n   */\n  async generateReport(\n    request: ReportGenerateRequest,\n  ): Promise<ReportResult[]> {\n    if (!this.isConfigured()) {\n      throw new Error(\n        'CODERABBIT_API_KEY not configured. Set environment variable or pass apiKey in config.',\n      )\n    }\n\n    const controller = new AbortController()\n    const timeoutId = setTimeout(() => controller.abort(), this.timeout)\n\n    try {\n      const response = await fetch(\n        `${this.baseUrl}/${API_VERSION}/report.generate`,\n        {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/json',\n            'x-coderabbitai-api-key': this.apiKey!,\n          },\n          body: JSON.stringify({\n            scheduleRange: 'Dates',\n            ...request,\n          }),\n          signal: controller.signal,\n        },\n      )\n\n      clearTimeout(timeoutId)\n\n      if (!response.ok) {\n        const errorData = (await response.json()) as CodeRabbitErrorResponse\n        const errorMessage =\n          errorData.message ||\n          `API request failed with status ${response.status}`\n        const details = errorData.issues?.map((i) => i.message).join(', ')\n\n        throw new Error(details ? `${errorMessage}: ${details}` : errorMessage)\n      }\n\n      // CodeRabbit API wraps response in {result: {data: []}}\n      const responseData = (await response.json()) as {\n        result: { data: ReportResult[] }\n      }\n\n      return responseData.result.data\n    } catch (error) {\n      clearTimeout(timeoutId)\n\n      // Handle timeout\n      if (error instanceof Error && error.name === 'AbortError') {\n        throw new Error(\n          `CodeRabbit report generation timed out after ${this.timeout / 1000}s`,\n        )\n      }\n\n      throw error\n    }\n  }\n}\n\n/**\n * Create a new CodeRabbit client instance\n *\n * @example\n * ```ts\n * const client = createCodeRabbitClient({ apiKey: 'your-key' })\n * const results = await client.generateReport({\n *   from: '2024-01-01',\n *   to: '2024-01-31',\n *   promptTemplate: 'Sprint Report'\n * })\n * ```\n */\nexport function createCodeRabbitClient(\n  config?: CodeRabbitClientConfig,\n): CodeRabbitClient {\n  return new CodeRabbitClient(config)\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Set CODERABBIT_API_KEY environment variable or pass apiKey in config. Get API key from https://app.coderabbit.ai/settings/api-keys (requires Pro plan subscription).",
+  "categories": [
+    "api-client",
+    "developer-tools"
+  ]
+}

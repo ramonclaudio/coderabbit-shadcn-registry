@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-storage-convex",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit Convex Adapter",
+  "description": "Convex database adapter with real-time sync and auth support. Includes schema definitions for the reports table.",
+  "categories": [
+    "storage",
+    "database",
+    "real-time"
+  ],
+  "dependencies": [
+    "convex"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/storage-convex.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "registry/default/coderabbit/lib/storage-convex-schema.ts",
+      "type": "registry:file",
+      "target": "~/convex/coderabbit-schema.ts"
+    }
+  ],
+  "docs": "Import coderabbitReportsTable in your convex/schema.ts and add as 'coderabbit_reports' table. Pass ConvexReactClient instance and api to ConvexStorageAdapter constructor."
+}

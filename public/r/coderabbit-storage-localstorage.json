@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-storage-localstorage",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:lib",
+  "title": "CodeRabbit LocalStorage Adapter",
+  "description": "Browser localStorage adapter for CodeRabbit reports. Perfect for client-side apps and prototyping. No database required.",
+  "categories": [
+    "storage",
+    "browser"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-storage-adapter"
+  ],
+  "files": [
+    {
+      "path": "registry/default/coderabbit/lib/storage-localstorage.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Browser-only storage using localStorage. Data persists across sessions but is limited to ~5-10MB."
+}

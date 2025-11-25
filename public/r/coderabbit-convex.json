@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-convex",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:block",
+  "title": "CodeRabbit with Convex",
+  "description": "Complete CodeRabbit integration with Convex database. Includes real-time sync, auth support, and schema definitions. Perfect for production apps.",
+  "categories": [
+    "complete",
+    "database",
+    "real-time"
+  ],
+  "dependencies": [
+    "react",
+    "lucide-react",
+    "convex"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-storage-convex",
+    "coderabbit-react",
+    "coderabbit-form",
+    "coderabbit-branding"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": "",
+    "CONVEX_DEPLOYMENT": "",
+    "CONVEX_URL": "",
+    "CONVEX_SITE_URL": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Run 'npx convex dev' to get your Convex deployment URL. Import coderabbitReportsTable in your convex/schema.ts."
+}

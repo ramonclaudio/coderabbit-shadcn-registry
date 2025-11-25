@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-with-localstorage",
+  "type": "registry:block",
+  "title": "CodeRabbit with LocalStorage",
+  "description": "CodeRabbit core with browser localStorage adapter. Perfect for client-side applications, prototyping, and testing. Reports persist across page reloads in the browser.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-storage-localstorage",
+    "coderabbit-react"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Use LocalStorageAdapter in your useCodeRabbit hook. Reports are stored in browser localStorage and persist across page reloads.",
+  "categories": [
+    "complete",
+    "browser"
+  ]
+}

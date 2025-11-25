@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coderabbit-mysql",
+  "author": "Ray <hi@rmncldyo.com>",
+  "type": "registry:block",
+  "title": "CodeRabbit with MySQL",
+  "description": "Complete CodeRabbit integration with MySQL/MariaDB. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
+  "categories": [
+    "complete",
+    "database"
+  ],
+  "dependencies": [
+    "react",
+    "lucide-react",
+    "mysql2"
+  ],
+  "devDependencies": [
+    "@types/mysql2"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "coderabbit-types",
+    "coderabbit-client",
+    "coderabbit-storage-adapter",
+    "coderabbit-storage-mysql",
+    "coderabbit-react",
+    "coderabbit-form",
+    "coderabbit-branding"
+  ],
+  "envVars": {
+    "CODERABBIT_API_KEY": "",
+    "MYSQL_HOST": "",
+    "MYSQL_PORT": "3306",
+    "MYSQL_DATABASE": "",
+    "MYSQL_USER": "",
+    "MYSQL_PASSWORD": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Run the SQL schema from storage-mysql.ts."
+}
