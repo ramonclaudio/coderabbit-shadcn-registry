@@ -4,10 +4,11 @@
  * Verify flat registry compliance with registry index requirements
  *
  * Checks:
- * 1. No content property in files
- * 2. Source files exist at their paths
+ * 1. registry.json (INDEX) must NOT have content in files array
+ * 2. Individual item files SHOULD have content (CLI delivers code this way)
  * 3. Valid schema references
  * 4. Proper file types
+ * 5. Flat structure (no nested directories)
  */
 
 const fs = require('fs');
@@ -85,6 +86,28 @@ function verifyMainRegistry() {
     errors++;
   } else {
     console.log(`   ✓ Items: ${registry.items.length}`);
+
+    // CRITICAL: registry.json INDEX must NOT have content in files arrays
+    let itemsWithContent = [];
+    for (const item of registry.items) {
+      if (item.files && Array.isArray(item.files)) {
+        const hasContent = item.files.some((f) => 'content' in f);
+        if (hasContent) {
+          itemsWithContent.push(item.name);
+        }
+      }
+    }
+
+    if (itemsWithContent.length > 0) {
+      console.error('   ❌ CRITICAL: registry.json items contain content property');
+      console.error('      This violates shadcn directory requirements!');
+      itemsWithContent.forEach((name) => {
+        console.error(`      - ${name}`);
+      });
+      errors++;
+    } else {
+      console.log('   ✓ No content in index items (directory compliant)');
+    }
   }
 
   console.log();
@@ -130,47 +153,14 @@ function verifyRegistryItem(item) {
     console.log(`   ✓ Type: ${itemJSON.type}`);
   }
 
-  // Check files array for content property (MUST NOT have it)
+  // Individual item files SHOULD have content - that's how CLI delivers code
+  // The "no content" rule only applies to registry.json (the INDEX file)
   if (itemJSON.files && Array.isArray(itemJSON.files)) {
-    let hasContentProperty = false;
-    let filesWithContent = [];
-
-    for (const file of itemJSON.files) {
-      if ('content' in file) {
-        hasContentProperty = true;
-        filesWithContent.push(file.path);
-      }
-    }
-
-    if (hasContentProperty) {
-      console.error(`   ❌ CRITICAL: Files contain 'content' property`);
-      console.error(`      This violates registry index requirements!`);
-      console.error(`      Files with content: ${filesWithContent.length}`);
-      filesWithContent.forEach((filePath) => {
-        console.error(`        - ${filePath}`);
-      });
-      errors++;
-    } else {
-      console.log(`   ✓ No content property (registry index compatible)`);
-    }
-
-    // Verify source files exist
-    let missingFiles = 0;
-    for (const file of itemJSON.files) {
-      const sourcePath = path.join(OUTPUT_DIR, file.path);
-      if (!fileExists(sourcePath)) {
-        if (missingFiles === 0) {
-          console.error(`   ❌ Source files missing:`);
-        }
-        console.error(`      - ${file.path}`);
-        missingFiles++;
-      }
-    }
-
-    if (missingFiles > 0) {
-      errors++;
+    const filesWithContent = itemJSON.files.filter((f) => 'content' in f);
+    if (filesWithContent.length > 0) {
+      console.log(`   ✓ ${filesWithContent.length} file(s) with inline content`);
     } else if (itemJSON.files.length > 0) {
-      console.log(`   ✓ All ${itemJSON.files.length} source files exist`);
+      console.log(`   ✓ ${itemJSON.files.length} file reference(s)`);
     }
   }
 

@@ -8,9 +8,7 @@
   "dependencies": [
     "react",
     "lucide-react",
-    "mysql2"
-  ],
-  "devDependencies": [
+    "mysql2",
     "@types/mysql2"
   ],
   "registryDependencies": [

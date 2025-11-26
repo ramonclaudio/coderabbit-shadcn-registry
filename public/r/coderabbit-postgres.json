@@ -8,9 +8,7 @@
   "dependencies": [
     "react",
     "lucide-react",
-    "pg"
-  ],
-  "devDependencies": [
+    "pg",
     "@types/pg"
   ],
   "registryDependencies": [

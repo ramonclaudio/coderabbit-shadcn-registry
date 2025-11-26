@@ -6,9 +6,7 @@
   "author": "Ray <hi@rmncldyo.com>",
   "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
   "dependencies": [
-    "pg"
-  ],
-  "devDependencies": [
+    "pg",
     "@types/pg"
   ],
   "registryDependencies": [

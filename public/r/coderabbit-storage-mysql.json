@@ -6,9 +6,7 @@
   "author": "Ray <hi@rmncldyo.com>",
   "description": "MySQL/MariaDB adapter with connection pooling. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
   "dependencies": [
-    "mysql2"
-  ],
-  "devDependencies": [
+    "mysql2",
     "@types/mysql2"
   ],
   "registryDependencies": [

@@ -113,8 +113,7 @@
       "title": "CodeRabbit PostgreSQL Adapter",
       "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
       "categories": ["storage", "database"],
-      "dependencies": ["pg"],
-      "devDependencies": ["@types/pg"],
+      "dependencies": ["pg", "@types/pg"],
       "registryDependencies": ["coderabbit-types", "coderabbit-storage-adapter"],
       "files": [
         {
@@ -131,8 +130,7 @@
       "title": "CodeRabbit MySQL Adapter",
       "description": "MySQL/MariaDB adapter with connection pooling. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
       "categories": ["storage", "database"],
-      "dependencies": ["mysql2"],
-      "devDependencies": ["@types/mysql2"],
+      "dependencies": ["mysql2", "@types/mysql2"],
       "registryDependencies": ["coderabbit-types", "coderabbit-storage-adapter"],
       "files": [
         {
@@ -330,8 +328,7 @@
       "title": "CodeRabbit with PostgreSQL",
       "description": "Complete CodeRabbit integration with PostgreSQL. Works with Neon, Vercel Postgres, Railway, AWS RDS, etc.",
       "categories": ["complete", "database"],
-      "dependencies": ["react", "lucide-react", "pg"],
-      "devDependencies": ["@types/pg"],
+      "dependencies": ["react", "lucide-react", "pg", "@types/pg"],
       "registryDependencies": [
         "button",
         "input",
@@ -363,8 +360,7 @@
       "title": "CodeRabbit with MySQL",
       "description": "Complete CodeRabbit integration with MySQL/MariaDB. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
       "categories": ["complete", "database"],
-      "dependencies": ["react", "lucide-react", "mysql2"],
-      "devDependencies": ["@types/mysql2"],
+      "dependencies": ["react", "lucide-react", "mysql2", "@types/mysql2"],
       "registryDependencies": [
         "button",
         "input",

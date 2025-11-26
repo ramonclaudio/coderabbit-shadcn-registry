@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry#readme",
   "scripts": {
-    "registry:build": "shadcn build && node scripts/transform-registry-deps.js",
+    "registry:build": "npx shadcn build && node scripts/transform-registry-deps.js",
     "registry:serve": "npx serve public -p 3001",
     "registry:dev": "npm run registry:build && npm run registry:serve",
     "verify": "node scripts/verify-flat-registry.js",
