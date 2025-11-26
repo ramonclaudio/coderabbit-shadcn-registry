@@ -214,22 +214,22 @@
           "type": "registry:component"
         },
         {
-          "path": "registry/default/public/coderabbit/coderabbit-dark-icon.svg",
+          "path": "registry/default/public/coderabbit-dark-icon.svg",
           "type": "registry:file",
           "target": "~/public/coderabbit/coderabbit-dark-icon.svg"
         },
         {
-          "path": "registry/default/public/coderabbit/coderabbit-light-icon.svg",
+          "path": "registry/default/public/coderabbit-light-icon.svg",
           "type": "registry:file",
           "target": "~/public/coderabbit/coderabbit-light-icon.svg"
         },
         {
-          "path": "registry/default/public/coderabbit/coderabbit-dark-logo.svg",
+          "path": "registry/default/public/coderabbit-dark-logo.svg",
           "type": "registry:file",
           "target": "~/public/coderabbit/coderabbit-dark-logo.svg"
         },
         {
-          "path": "registry/default/public/coderabbit/coderabbit-light-logo.svg",
+          "path": "registry/default/public/coderabbit-light-logo.svg",
           "type": "registry:file",
           "target": "~/public/coderabbit/coderabbit-light-logo.svg"
         }
