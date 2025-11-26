@@ -307,15 +307,16 @@ class MyStorageAdapter implements ReportStorageAdapter {
 
 ```bash
 npm install
-npm run build          # Build registry
-npm run build:verify   # Verify compliance
-npm run serve          # Serve at http://localhost:3001/r
-npm run format
-npm run typecheck
+npm run registry:build   # Build registry
+npm run registry:serve   # Serve at http://localhost:3001/r
+npm run registry:dev     # Build and serve
+npm run verify           # Verify registry compliance
+npm run format           # Format code
+npm run typecheck        # Type check
 ```
 
 > [!TIP]
-> Run `npm run build:verify` before submitting changes to ensure registry compliance.
+> Run `npm run verify` before submitting changes to ensure registry compliance.
 
 ## Requirements
 
