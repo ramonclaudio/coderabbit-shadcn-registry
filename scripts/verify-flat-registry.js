@@ -178,50 +178,25 @@ function verifyRegistryItem(item) {
 }
 
 /**
- * Verify bundle files
+ * Verify flat structure (no nested directories)
  */
-function verifyBundles() {
-  const backends = ['localstorage', 'convex', 'supabase', 'postgres', 'mysql'];
+function verifyFlatStructure() {
+  console.log('📁 Verifying flat registry structure...\n');
 
-  console.log('📦 Verifying backend bundles...\n');
+  const entries = fs.readdirSync(OUTPUT_DIR, { withFileTypes: true });
+  const directories = entries.filter((e) => e.isDirectory());
 
-  for (const backend of backends) {
-    const bundleDir = path.join(OUTPUT_DIR, backend);
-    const bundleFile = path.join(bundleDir, 'coderabbit.json');
-    const registryFile = path.join(bundleDir, 'registry.json');
-
-    console.log(`Checking ${backend}...`);
-
-    if (!fileExists(bundleFile)) {
-      console.error(`   ❌ Bundle file not found: ${bundleFile}`);
-      errors++;
-    } else {
-      const bundle = readJSON(bundleFile);
-      if (bundle) {
-        // Check for content property (bundles should NOT have content)
-        if (bundle.files && Array.isArray(bundle.files)) {
-          const hasContent = bundle.files.some((f) => 'content' in f);
-          if (hasContent) {
-            console.error(`   ❌ Bundle contains content property`);
-            errors++;
-          } else {
-            console.log(`   ✓ No content in bundle (uses registryDependencies)`);
-          }
-        } else {
-          console.log(`   ✓ No files array (uses registryDependencies)`);
-        }
-      }
-    }
-
-    if (!fileExists(registryFile)) {
-      console.warn(`   ⚠️  Registry file not found: ${registryFile}`);
-      warnings++;
-    } else {
-      console.log(`   ✓ Registry file exists`);
-    }
-
-    console.log();
+  if (directories.length > 0) {
+    console.error('   ❌ Found nested directories (registry must be flat):');
+    directories.forEach((dir) => {
+      console.error(`      - ${dir.name}/`);
+    });
+    errors++;
+  } else {
+    console.log('   ✓ No nested directories (flat structure)');
   }
+
+  console.log();
 }
 
 /**
@@ -266,8 +241,8 @@ function verify() {
     verifyRegistryItem(item);
   }
 
-  // Verify bundles
-  verifyBundles();
+  // Verify flat structure (no nested directories)
+  verifyFlatStructure();
 
   // Print summary
   printSummary(registry.items.length);

@@ -32,8 +32,7 @@
   },
   "homepage": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry#readme",
   "scripts": {
-    "build": "npx shadcn build && node scripts/transform-registry-deps.js && node scripts/build-bundles.js",
-    "build:bundles": "node scripts/build-bundles.js",
+    "build": "npx shadcn build && node scripts/transform-registry-deps.js",
     "build:verify": "node scripts/verify-flat-registry.js",
     "build:all": "npm run build && npm run build:verify",
     "serve": "npx serve public -p 3001",
