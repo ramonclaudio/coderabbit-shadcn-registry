@@ -24,31 +24,31 @@ Choose your storage backend:
 ### LocalStorage (Browser)
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/localstorage/coderabbit.json
+npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-localstorage.json
 ```
 
 ### Convex
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/convex/coderabbit.json
+npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-convex.json
 ```
 
 ### Supabase
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/supabase/coderabbit.json
+npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-supabase.json
 ```
 
 ### PostgreSQL
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/postgres/coderabbit.json
+npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-postgres.json
 ```
 
 ### MySQL
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/mysql/coderabbit.json
+npx shadcn@latest add https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-mysql.json
 ```
 
 ## Individual Components

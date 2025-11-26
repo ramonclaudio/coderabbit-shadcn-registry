@@ -5,6 +5,9 @@ node_modules/
 # Build outputs
 dist/
 
+# Registry nested directories (must remain flat for shadcn directory compliance)
+public/r/*/
+
 # Environment
 .env
 .env.local
