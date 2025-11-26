@@ -32,17 +32,13 @@
   },
   "homepage": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry#readme",
   "scripts": {
-    "registry:build": "npx shadcn build && node scripts/transform-registry-deps.js",
-    "registry:serve": "npx serve public -p 3001",
-    "registry:dev": "npm run registry:build && npm run registry:serve",
-    "verify": "node scripts/verify-flat-registry.js",
+    "registry:build": "npx shadcn build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
-    "shadcn": "latest",
     "typescript": "^5.9.3"
   }
 }

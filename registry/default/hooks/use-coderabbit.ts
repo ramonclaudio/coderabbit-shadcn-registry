@@ -1,8 +1,3 @@
-/**
- * React Hook for CodeRabbit Reports
- * Works with any storage adapter or no storage at all
- */
-
 import { useState, useCallback, useEffect } from 'react'
 import { createCodeRabbitClient } from '@/registry/default/coderabbit/lib/client'
 import {
@@ -16,98 +11,21 @@ import type {
 import type { ReportStorageAdapter } from '@/registry/default/coderabbit/lib/storage-adapter'
 
 export interface UseCodeRabbitOptions {
-  /**
-   * Optional API key (defaults to CODERABBIT_API_KEY env var)
-   * Note: In Next.js, prefer using the server action which has access to env vars
-   */
   apiKey?: string
-
-  /**
-   * Optional storage adapter for persisting reports
-   * If not provided, reports are not persisted
-   */
   storage?: ReportStorageAdapter
-
-  /**
-   * Whether to use server actions (recommended for Next.js)
-   * When true, API calls are made server-side where CODERABBIT_API_KEY is available
-   * @default true
-   */
   useServerAction?: boolean
-
-  /**
-   * Optional callback when report generation completes
-   */
   onSuccess?: (reportId: string | null, results?: ReportResult[]) => void
-
-  /**
-   * Optional callback when report generation fails
-   */
   onError?: (error: string) => void
 }
 
 export interface UseCodeRabbitReturn {
-  /**
-   * Generate a new report
-   * @returns Report ID if storage is configured, null otherwise
-   */
   generateReport: (request: ReportGenerateRequest) => Promise<string | null>
-
-  /**
-   * Whether a report is currently being generated
-   */
   isGenerating: boolean
-
-  /**
-   * Error message if generation failed
-   */
   error: string | null
-
-  /**
-   * Whether CodeRabbit is configured (API key set)
-   */
   isConfigured: boolean
-
-  /**
-   * Clear error state
-   */
   clearError: () => void
 }
 
-/**
- * React hook for generating CodeRabbit reports
- *
- * @example Without storage (direct API call)
- * ```tsx
- * const { generateReport, isGenerating } = useCodeRabbit()
- *
- * const results = await generateReport({
- *   from: '2024-01-01',
- *   to: '2024-01-31',
- *   promptTemplate: 'Sprint Report'
- * })
- * ```
- *
- * @example With localStorage
- * ```tsx
- * import { LocalStorageAdapter } from '@/registry/default/coderabbit/lib/storage-localstorage'
- *
- * const { generateReport } = useCodeRabbit({
- *   storage: new LocalStorageAdapter()
- * })
- *
- * const reportId = await generateReport({ ... })
- * ```
- *
- * @example With callbacks
- * ```tsx
- * const { generateReport } = useCodeRabbit({
- *   storage: myAdapter,
- *   onSuccess: (id) => toast.success(`Report ${id} generated`),
- *   onError: (err) => toast.error(err)
- * })
- * ```
- */
 export function useCodeRabbit(
   options?: UseCodeRabbitOptions,
 ): UseCodeRabbitReturn {

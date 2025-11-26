@@ -1,8 +1,3 @@
-/**
- * CodeRabbit Report Form Component
- * Reusable form for collecting report parameters
- */
-
 import { useState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Label } from '@/components/ui/label'
@@ -78,23 +73,6 @@ interface CodeRabbitReportFormProps {
   onChange: (value: CodeRabbitReportFormData) => void
 }
 
-/**
- * CodeRabbit report configuration form
- *
- * @example
- * ```tsx
- * const [formData, setFormData] = useState({
- *   promptTemplate: 'Sprint Report',
- *   customPrompt: '',
- *   groupBy: 'NONE',
- *   subgroupBy: 'NONE',
- *   orgId: '',
- *   filters: []
- * })
- *
- * return <CodeRabbitReportForm value={formData} onChange={setFormData} />
- * ```
- */
 export function CodeRabbitReportForm({
   value,
   onChange,
@@ -341,9 +319,6 @@ export function CodeRabbitReportForm({
   )
 }
 
-/**
- * Convert form data to API request payload
- */
 export function getCodeRabbitReportPayload(data: CodeRabbitReportFormData) {
   const isCustomPrompt = data.promptTemplate === 'Custom'
 
