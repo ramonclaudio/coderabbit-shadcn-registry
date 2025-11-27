@@ -6,12 +6,38 @@ import type {
   StoredReport,
   ReportStatus,
   ReportResult,
+  FilterConfig,
 } from '@/registry/default/lib/types'
-import type { Pool, PoolConnection } from 'mysql2/promise'
+import type { Pool, RowDataPacket } from 'mysql2/promise'
 
 export interface MySQLStorageConfig {
   pool: Pool
   tableName?: string
+}
+
+/**
+ * Database row type matching the MySQL schema (snake_case columns)
+ */
+interface DatabaseReportRow extends RowDataPacket {
+  id: string
+  status: ReportStatus
+  from_date: string
+  to_date: string
+  prompt_template: string | null
+  custom_prompt: string | null
+  group_by: string | null
+  subgroup_by: string | null
+  org_id: string | null
+  parameters: FilterConfig[] | null
+  results: ReportResult[] | null
+  error: string | null
+  duration_ms: number | null
+  created_at: Date
+  user_id: string | null
+}
+
+interface CountRow extends RowDataPacket {
+  count: number
 }
 
 /**
@@ -94,20 +120,14 @@ export class MySQLStorageAdapter implements ReportStorageAdapter {
     ]
 
     try {
-      const [result] = await this.pool.execute(query, values)
-      const insertResult = result as any
-
-      // Get the generated ID
-      const [rows] = await this.pool.execute(
-        `SELECT id FROM ${this.tableName} WHERE id = LAST_INSERT_ID()`
-      )
+      await this.pool.execute(query, values)
 
       // For MySQL, we need to fetch the last inserted ID differently
-      const [idRows] = await this.pool.execute(
+      const [idRows] = await this.pool.execute<DatabaseReportRow[]>(
         `SELECT id FROM ${this.tableName} ORDER BY created_at DESC LIMIT 1`
       )
 
-      return (idRows as any)[0].id
+      return idRows[0].id
     } catch (error) {
       throw new Error(
         `Failed to create report: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -163,14 +183,13 @@ export class MySQLStorageAdapter implements ReportStorageAdapter {
     const query = `SELECT * FROM ${this.tableName} WHERE id = ?`
 
     try {
-      const [rows] = await this.pool.execute(query, [id])
-      const results = rows as any[]
+      const [rows] = await this.pool.execute<DatabaseReportRow[]>(query, [id])
 
-      if (results.length === 0) {
+      if (rows.length === 0) {
         return null
       }
 
-      return this.mapToStoredReport(results[0])
+      return this.mapToStoredReport(rows[0])
     } catch (error) {
       throw new Error(
         `Failed to get report: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -189,7 +208,7 @@ export class MySQLStorageAdapter implements ReportStorageAdapter {
     // Build query with optional status filter
     let query = `SELECT * FROM ${this.tableName}`
     let countQuery = `SELECT COUNT(*) as count FROM ${this.tableName}`
-    const values: any[] = []
+    const values: (string | number)[] = []
 
     if (options?.status) {
       query += ' WHERE status = ?'
@@ -202,15 +221,12 @@ export class MySQLStorageAdapter implements ReportStorageAdapter {
     const countValues = values
 
     try {
-      const [dataRows] = await this.pool.execute(query, queryValues)
-      const [countRows] = await this.pool.execute(countQuery, countValues)
-
-      const data = dataRows as any[]
-      const count = (countRows as any[])[0].count
+      const [dataRows] = await this.pool.execute<DatabaseReportRow[]>(query, queryValues)
+      const [countRows] = await this.pool.execute<CountRow[]>(countQuery, countValues)
 
       return {
-        reports: data.map((row) => this.mapToStoredReport(row)),
-        total: parseInt(count),
+        reports: dataRows.map((row) => this.mapToStoredReport(row)),
+        total: countRows[0].count,
       }
     } catch (error) {
       throw new Error(
@@ -231,7 +247,7 @@ export class MySQLStorageAdapter implements ReportStorageAdapter {
     }
   }
 
-  private mapToStoredReport(row: any): StoredReport {
+  private mapToStoredReport(row: DatabaseReportRow): StoredReport {
     return {
       id: row.id,
       status: row.status,

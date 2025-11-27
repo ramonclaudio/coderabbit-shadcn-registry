@@ -1,6 +1,0 @@
-# Build output
-public/r/*.json
-public/index/*.json
-
-# Auto-generated
-package-lock.json

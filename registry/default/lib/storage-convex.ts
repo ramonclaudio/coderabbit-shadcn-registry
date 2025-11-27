@@ -13,6 +13,29 @@ import type {
 } from '@/registry/default/lib/types'
 
 /**
+ * Convex client interface - matches the ConvexReactClient API
+ */
+interface ConvexClient {
+  mutation<T>(functionReference: unknown, args: unknown): Promise<T>
+  query<T>(functionReference: unknown, args: unknown): Promise<T>
+}
+
+/**
+ * Convex API structure for CodeRabbit reports
+ * Users should pass their api.coderabbit object
+ */
+interface ConvexCodeRabbitApi {
+  coderabbit: {
+    createReport: unknown
+    updateReportSuccess: unknown
+    updateReportFailure: unknown
+    getReport: unknown
+    listReports: unknown
+    deleteReport: unknown
+  }
+}
+
+/**
  * Convex storage adapter
  * Uses Convex for real-time database with auth support
  *
@@ -22,8 +45,8 @@ import type {
  */
 export class ConvexStorageAdapter implements ReportStorageAdapter {
   constructor(
-    private client: any, // ConvexReactClient
-    private api: any, // api.coderabbit.*
+    private client: ConvexClient,
+    private api: ConvexCodeRabbitApi,
   ) {}
 
   async create(data: Omit<StoredReport, 'id' | 'createdAt'>): Promise<string> {

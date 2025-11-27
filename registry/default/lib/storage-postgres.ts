@@ -6,12 +6,38 @@ import type {
   StoredReport,
   ReportStatus,
   ReportResult,
+  FilterConfig,
 } from '@/registry/default/lib/types'
-import type { Pool, PoolClient } from 'pg'
+import type { Pool } from 'pg'
 
 export interface PostgresStorageConfig {
   pool: Pool
   tableName?: string
+}
+
+/**
+ * Database row type matching the PostgreSQL schema (snake_case columns)
+ */
+interface DatabaseReportRow {
+  id: string
+  status: ReportStatus
+  from_date: string
+  to_date: string
+  prompt_template: string | null
+  custom_prompt: string | null
+  group_by: string | null
+  subgroup_by: string | null
+  org_id: string | null
+  parameters: FilterConfig[] | null
+  results: ReportResult[] | null
+  error: string | null
+  duration_ms: number | null
+  created_at: Date
+  user_id: string | null
+}
+
+interface CountRow {
+  count: string
 }
 
 /**
@@ -94,7 +120,7 @@ export class PostgresStorageAdapter implements ReportStorageAdapter {
     ]
 
     try {
-      const result = await this.pool.query(query, values)
+      const result = await this.pool.query<{ id: string }>(query, values)
       return result.rows[0].id
     } catch (error) {
       throw new Error(
@@ -151,7 +177,7 @@ export class PostgresStorageAdapter implements ReportStorageAdapter {
     const query = `SELECT * FROM ${this.tableName} WHERE id = $1`
 
     try {
-      const result = await this.pool.query(query, [id])
+      const result = await this.pool.query<DatabaseReportRow>(query, [id])
 
       if (result.rows.length === 0) {
         return null
@@ -176,7 +202,7 @@ export class PostgresStorageAdapter implements ReportStorageAdapter {
     // Build query with optional status filter
     let query = `SELECT * FROM ${this.tableName}`
     let countQuery = `SELECT COUNT(*) FROM ${this.tableName}`
-    const values: any[] = []
+    const values: (string | number)[] = []
 
     if (options?.status) {
       query += ' WHERE status = $1'
@@ -189,8 +215,8 @@ export class PostgresStorageAdapter implements ReportStorageAdapter {
 
     try {
       const [dataResult, countResult] = await Promise.all([
-        this.pool.query(query, values),
-        this.pool.query(countQuery, options?.status ? [options.status] : []),
+        this.pool.query<DatabaseReportRow>(query, values),
+        this.pool.query<CountRow>(countQuery, options?.status ? [options.status] : []),
       ])
 
       return {
@@ -216,7 +242,7 @@ export class PostgresStorageAdapter implements ReportStorageAdapter {
     }
   }
 
-  private mapToStoredReport(row: any): StoredReport {
+  private mapToStoredReport(row: DatabaseReportRow): StoredReport {
     return {
       id: row.id,
       status: row.status,

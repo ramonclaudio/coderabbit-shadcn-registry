@@ -6,6 +6,7 @@ import type {
   StoredReport,
   ReportStatus,
   ReportResult,
+  FilterConfig,
 } from '@/registry/default/lib/types'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
@@ -13,6 +14,27 @@ export interface SupabaseStorageConfig {
   client: SupabaseClient
   tableName?: string
   enableRLS?: boolean
+}
+
+/**
+ * Database row type matching the Supabase schema (snake_case columns)
+ */
+interface DatabaseReportRow {
+  id: string
+  status: ReportStatus
+  from_date: string
+  to_date: string
+  prompt_template: string | null
+  custom_prompt: string | null
+  group_by: string | null
+  subgroup_by: string | null
+  org_id: string | null
+  parameters: FilterConfig[] | null
+  results: ReportResult[] | null
+  error: string | null
+  duration_ms: number | null
+  created_at: string
+  user_id: string | null
 }
 
 /**
@@ -208,7 +230,7 @@ export class SupabaseStorageAdapter implements ReportStorageAdapter {
     }
   }
 
-  private mapToStoredReport(data: any): StoredReport {
+  private mapToStoredReport(data: DatabaseReportRow): StoredReport {
     return {
       id: data.id,
       status: data.status,

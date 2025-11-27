@@ -1,4 +1,6 @@
-import { useState } from 'react'
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
 import { Plus, X } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -60,6 +62,8 @@ export interface FilterParameterForm {
 }
 
 export interface CodeRabbitReportFormData {
+  fromDate: string
+  toDate: string
   promptTemplate: string
   customPrompt: string
   groupBy: string
@@ -73,11 +77,56 @@ interface CodeRabbitReportFormProps {
   onChange: (value: CodeRabbitReportFormData) => void
 }
 
+/**
+ * Get default date range (last 7 days)
+ */
+function getDefaultDateRange() {
+  const today = new Date()
+  const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
+  return {
+    fromDate: weekAgo.toISOString().split('T')[0],
+    toDate: today.toISOString().split('T')[0],
+  }
+}
+
+/**
+ * Get initial form data with sensible defaults
+ */
+export function getInitialFormData(): CodeRabbitReportFormData {
+  const { fromDate, toDate } = getDefaultDateRange()
+  return {
+    fromDate,
+    toDate,
+    promptTemplate: '',
+    customPrompt: '',
+    groupBy: 'NONE',
+    subgroupBy: 'NONE',
+    orgId: '',
+    filters: [],
+  }
+}
+
 export function CodeRabbitReportForm({
   value,
   onChange,
 }: CodeRabbitReportFormProps) {
   const [showAdvanced, setShowAdvanced] = useState(false)
+  const initializedRef = useRef(false)
+
+  // Set default dates on mount if not provided
+  useEffect(() => {
+    if (initializedRef.current) return
+    initializedRef.current = true
+
+    if (!value.fromDate || !value.toDate) {
+      const { fromDate, toDate } = getDefaultDateRange()
+      onChange({
+        ...value,
+        fromDate: value.fromDate || fromDate,
+        toDate: value.toDate || toDate,
+      })
+    }
+  }, [value, onChange])
 
   const addFilter = () => {
     onChange({
@@ -108,6 +157,34 @@ export function CodeRabbitReportForm({
 
   return (
     <div className="space-y-4">
+      {/* Date Range */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="fromDate" className="text-sm font-semibold">
+            From Date
+          </Label>
+          <Input
+            id="fromDate"
+            type="date"
+            value={value.fromDate}
+            onChange={(e) => onChange({ ...value, fromDate: e.target.value })}
+            className="h-11"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="toDate" className="text-sm font-semibold">
+            To Date
+          </Label>
+          <Input
+            id="toDate"
+            type="date"
+            value={value.toDate}
+            onChange={(e) => onChange({ ...value, toDate: e.target.value })}
+            className="h-11"
+          />
+        </div>
+      </div>
+
       {/* Template Selection */}
       <div className="space-y-2.5">
         <Label htmlFor="template" className="text-sm font-semibold">
@@ -120,9 +197,7 @@ export function CodeRabbitReportForm({
           }
         >
           <SelectTrigger id="template" className="h-11">
-            <SelectValue>
-              {value.promptTemplate || 'Select template'}
-            </SelectValue>
+            <SelectValue placeholder="Select template" />
           </SelectTrigger>
           <SelectContent>
             {PROMPT_TEMPLATES.map((template) => (
@@ -159,8 +234,9 @@ export function CodeRabbitReportForm({
       <Button
         type="button"
         variant="outline"
+        size="sm"
         onClick={() => setShowAdvanced(!showAdvanced)}
-        className="w-full h-11 font-medium"
+        className="w-full"
       >
         {showAdvanced ? 'Hide' : 'Show'} Advanced Options
       </Button>
@@ -307,7 +383,7 @@ export function CodeRabbitReportForm({
             {value.filters.length === 0 && (
               <div className="text-center py-6 px-4 border border-dashed rounded-lg bg-muted/20">
                 <p className="text-sm text-muted-foreground">
-                  No filters added. Click "Add Filter" to narrow down the report
+                  No filters added. Click &quot;Add Filter&quot; to narrow down the report
                   scope. Use pipe (|) to separate multiple values.
                 </p>
               </div>
@@ -335,6 +411,8 @@ export function getCodeRabbitReportPayload(data: CodeRabbitReportFormData) {
       : undefined
 
   return {
+    from: data.fromDate,
+    to: data.toDate,
     promptTemplate: isCustomPrompt
       ? undefined
       : (data.promptTemplate as PromptTemplate),

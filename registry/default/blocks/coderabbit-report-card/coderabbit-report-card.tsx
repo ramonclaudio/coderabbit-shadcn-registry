@@ -24,42 +24,22 @@ import {
   CodeRabbitIcon,
   CodeRabbitLogo,
 } from '@/registry/default/ui/coderabbit-branding'
-
-export interface Report {
-  id: string
-  provider: string
-  fromDate: string
-  toDate: string
-  fromTimestamp?: number
-  toTimestamp?: number
-  promptTemplate?: string
-  groupBy?: string
-  status: 'pending' | 'completed' | 'failed'
-  error?: string
-  durationMs?: number
-  results: Array<{ group: string; report: string }>
-}
+import type { StoredReport } from '@/registry/default/lib/types'
 
 export interface CodeRabbitReportCardProps {
-  reports: Report[]
+  reports: StoredReport[]
   onDelete?: (id: string) => void
   isDeleting?: boolean
-  providers?: Array<{ id: string; name: string }>
 }
 
 export function CodeRabbitReportCard({
   reports,
   onDelete,
   isDeleting = false,
-  providers = [],
 }: CodeRabbitReportCardProps) {
   const [expandedReportId, setExpandedReportId] = React.useState<string | null>(
     null,
   )
-
-  const getProvider = (providerId: string) => {
-    return providers.find((p) => p.id === providerId)
-  }
 
   if (reports.length === 0) {
     return (
@@ -103,18 +83,10 @@ export function CodeRabbitReportCard({
                 >
                   <div className="space-y-2 flex-1 min-w-0">
                     <div className="flex items-center gap-3 flex-wrap">
-                      {report.provider === 'coderabbit' ? (
-                        <>
-                          <CodeRabbitIcon className="h-4 w-4 shrink-0" />
-                          <Badge variant="secondary" className="text-xs">
-                            CodeRabbit
-                          </Badge>
-                        </>
-                      ) : report.provider ? (
-                        <Badge variant="secondary" className="text-xs">
-                          {getProvider(report.provider)?.name || report.provider}
-                        </Badge>
-                      ) : null}
+                      <CodeRabbitIcon className="h-4 w-4 shrink-0" />
+                      <Badge variant="secondary" className="text-xs">
+                        CodeRabbit
+                      </Badge>
                       <h3 className="text-base font-semibold truncate">
                         {report.promptTemplate || 'Custom Report'}
                       </h3>
