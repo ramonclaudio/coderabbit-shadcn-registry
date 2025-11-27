@@ -28,8 +28,7 @@
   "envVars": {
     "CODERABBIT_API_KEY": "",
     "CONVEX_DEPLOYMENT": "",
-    "CONVEX_URL": "",
-    "CONVEX_SITE_URL": ""
+    "CONVEX_URL": ""
   },
   "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Run 'npx convex dev' to get your Convex deployment URL. Import coderabbitReportsTable in your convex/schema.ts.",
   "categories": [
