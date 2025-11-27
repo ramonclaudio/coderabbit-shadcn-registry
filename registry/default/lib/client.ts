@@ -77,14 +77,9 @@ export class CodeRabbitClient {
    * Get API key from environment (works across runtimes)
    */
   private getApiKeyFromEnv(): string | null {
-    // Node.js / Bun / Deno
+    // Node.js / Bun / Deno (all support process.env)
     if (typeof process !== 'undefined' && process.env) {
       return process.env.CODERABBIT_API_KEY ?? null
-    }
-
-    // Deno
-    if (typeof Deno !== 'undefined' && Deno.env) {
-      return Deno.env.get('CODERABBIT_API_KEY') ?? null
     }
 
     // Browser (not recommended - use config param instead)
