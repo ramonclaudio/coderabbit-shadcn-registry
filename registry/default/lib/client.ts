@@ -22,12 +22,41 @@ export interface CodeRabbitClientConfig {
 }
 
 /**
- * Error response from CodeRabbit API
+ * Error response from CodeRabbit API (standard format)
  */
 interface CodeRabbitErrorResponse {
   message: string
   code: string
   issues?: Array<{ message: string }>
+}
+
+/**
+ * Error response from CodeRabbit API (tRPC format)
+ */
+interface CodeRabbitTRPCErrorResponse {
+  error: {
+    message: string
+    code: number
+    data?: {
+      code: string
+      httpStatus: number
+      path: string
+    }
+  }
+}
+
+/**
+ * User-friendly error messages for known error codes
+ */
+const ERROR_MESSAGES: Record<string, string> = {
+  UNAUTHORIZED:
+    'CodeRabbit Pro subscription required. Please upgrade your plan at https://coderabbit.ai to use the Reports API.',
+  FORBIDDEN:
+    'Access denied. Please check your API key permissions.',
+  TOO_MANY_REQUESTS:
+    'Rate limit exceeded. Please wait a few minutes before trying again.',
+  BAD_REQUEST:
+    'Invalid request. Please check your report parameters.',
 }
 
 /**
@@ -91,6 +120,19 @@ export class CodeRabbitClient {
     const timeoutId = setTimeout(() => controller.abort(), this.timeout)
 
     try {
+      // Build request body matching CodeRabbit API format
+      const requestBody = {
+        from: request.from,
+        to: request.to,
+        scheduleRange: request.scheduleRange ?? 'Dates',
+        parameters: request.parameters ?? [],
+        ...(request.prompt && { prompt: request.prompt }),
+        ...(request.promptTemplate && { promptTemplate: request.promptTemplate }),
+        ...(request.groupBy && { groupBy: request.groupBy }),
+        ...(request.subgroupBy && { subgroupBy: request.subgroupBy }),
+        ...(request.orgId && { orgId: request.orgId }),
+      }
+
       const response = await fetch(
         `${this.baseUrl}/${API_VERSION}/report.generate`,
         {
@@ -99,10 +141,7 @@ export class CodeRabbitClient {
             'Content-Type': 'application/json',
             'x-coderabbitai-api-key': this.apiKey!,
           },
-          body: JSON.stringify({
-            scheduleRange: 'Dates',
-            ...request,
-          }),
+          body: JSON.stringify(requestBody),
           signal: controller.signal,
         },
       )
@@ -110,11 +149,43 @@ export class CodeRabbitClient {
       clearTimeout(timeoutId)
 
       if (!response.ok) {
-        const errorData = (await response.json()) as CodeRabbitErrorResponse
+        const errorData = await response.json()
+
+        // Handle tRPC error format (e.g., { error: { message, code, data } })
+        if ('error' in errorData) {
+          const trpcError = errorData as CodeRabbitTRPCErrorResponse
+          const errorCode = trpcError.error.data?.code
+
+          // Use friendly message if available
+          if (errorCode && ERROR_MESSAGES[errorCode]) {
+            throw new Error(ERROR_MESSAGES[errorCode])
+          }
+
+          throw new Error(
+            trpcError.error.message ||
+              `API request failed with status ${response.status}`,
+          )
+        }
+
+        // Handle standard error format (e.g., { message, code, issues })
+        const stdError = errorData as CodeRabbitErrorResponse
+
+        // Check for friendly message by HTTP status
+        const statusCodeMap: Record<number, string> = {
+          401: 'UNAUTHORIZED',
+          403: 'FORBIDDEN',
+          429: 'TOO_MANY_REQUESTS',
+          400: 'BAD_REQUEST',
+        }
+        const mappedCode = statusCodeMap[response.status]
+        if (mappedCode && ERROR_MESSAGES[mappedCode]) {
+          throw new Error(ERROR_MESSAGES[mappedCode])
+        }
+
         const errorMessage =
-          errorData.message ||
+          stdError.message ||
           `API request failed with status ${response.status}`
-        const details = errorData.issues?.map((i) => i.message).join(', ')
+        const details = stdError.issues?.map((i) => i.message).join(', ')
 
         throw new Error(details ? `${errorMessage}: ${details}` : errorMessage)
       }
