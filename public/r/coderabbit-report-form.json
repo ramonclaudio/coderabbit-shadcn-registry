@@ -3,7 +3,7 @@
   "name": "coderabbit-report-form",
   "type": "registry:component",
   "title": "CodeRabbit Report Form",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "Full-featured form component for collecting report parameters. Includes template selection, custom prompts, filters, and grouping options.",
   "dependencies": [
     "react",
@@ -15,7 +15,7 @@
     "label",
     "select",
     "textarea",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
   ],
   "files": [
     {
