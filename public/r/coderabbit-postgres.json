@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-postgres",
-  "type": "registry:block",
   "title": "CodeRabbit with PostgreSQL",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Complete CodeRabbit integration with PostgreSQL. Works with Neon, Vercel Postgres, Railway, AWS RDS, etc.",
@@ -26,6 +25,7 @@
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
   ],
+  "files": [],
   "envVars": {
     "CODERABBIT_API_KEY": "",
     "POSTGRES_HOST": "",
@@ -38,5 +38,6 @@
   "categories": [
     "complete",
     "database"
-  ]
+  ],
+  "type": "registry:block"
 }

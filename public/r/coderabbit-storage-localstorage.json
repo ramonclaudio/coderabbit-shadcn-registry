@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-localstorage",
-  "type": "registry:lib",
   "title": "CodeRabbit LocalStorage Adapter",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Browser localStorage adapter for CodeRabbit reports. Perfect for client-side apps and prototyping. No database required.",
@@ -20,5 +19,6 @@
   "categories": [
     "storage",
     "browser"
-  ]
+  ],
+  "type": "registry:lib"
 }

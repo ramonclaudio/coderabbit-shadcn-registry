@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-actions",
-  "type": "registry:lib",
   "title": "CodeRabbit Server Actions",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
@@ -20,5 +19,6 @@
   "categories": [
     "nextjs",
     "server-actions"
-  ]
+  ],
+  "type": "registry:lib"
 }

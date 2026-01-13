@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-types",
-  "type": "registry:lib",
   "title": "CodeRabbit Types",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Pure TypeScript types for CodeRabbit API integration. Framework-agnostic type definitions with zero dependencies.",
@@ -15,5 +14,6 @@
   "categories": [
     "types",
     "api"
-  ]
+  ],
+  "type": "registry:lib"
 }

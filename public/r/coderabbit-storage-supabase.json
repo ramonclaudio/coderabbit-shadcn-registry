@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-supabase",
-  "type": "registry:lib",
   "title": "CodeRabbit Supabase Adapter",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Supabase (PostgreSQL) adapter with Row Level Security support. Includes SQL schema and RLS policies.",
@@ -23,5 +22,6 @@
   "categories": [
     "storage",
     "database"
-  ]
+  ],
+  "type": "registry:lib"
 }

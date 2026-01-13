@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-convex",
-  "type": "registry:lib",
   "title": "CodeRabbit Convex Adapter",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Convex database adapter with real-time sync and auth support. Includes schema definitions for the reports table.",
@@ -30,5 +29,6 @@
     "storage",
     "database",
     "real-time"
-  ]
+  ],
+  "type": "registry:lib"
 }

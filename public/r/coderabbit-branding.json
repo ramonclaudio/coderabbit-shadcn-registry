@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-branding",
-  "type": "registry:component",
   "title": "CodeRabbit Branding",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "CodeRabbit logo and icon components with dark/light theme support. Includes SVG assets.",
@@ -42,5 +41,6 @@
   "categories": [
     "branding",
     "components"
-  ]
+  ],
+  "type": "registry:component"
 }

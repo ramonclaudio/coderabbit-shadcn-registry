@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-supabase",
-  "type": "registry:block",
   "title": "CodeRabbit with Supabase",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Complete CodeRabbit integration with Supabase (PostgreSQL). Includes Row Level Security policies. Perfect for apps with authentication.",
@@ -25,6 +24,7 @@
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
   ],
+  "files": [],
   "envVars": {
     "CODERABBIT_API_KEY": "",
     "SUPABASE_URL": "",
@@ -34,5 +34,6 @@
   "categories": [
     "complete",
     "database"
-  ]
+  ],
+  "type": "registry:block"
 }

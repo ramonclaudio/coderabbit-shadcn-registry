@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-postgres",
-  "type": "registry:lib",
   "title": "CodeRabbit PostgreSQL Adapter",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
@@ -24,5 +23,6 @@
   "categories": [
     "storage",
     "database"
-  ]
+  ],
+  "type": "registry:lib"
 }
