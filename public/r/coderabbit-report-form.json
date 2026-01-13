@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-report-form",
-  "type": "registry:component",
   "title": "CodeRabbit Report Form",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Full-featured form component for collecting report parameters. Includes template selection, custom prompts, filters, and grouping options.",
@@ -27,5 +26,6 @@
   "categories": [
     "forms",
     "components"
-  ]
+  ],
+  "type": "registry:component"
 }

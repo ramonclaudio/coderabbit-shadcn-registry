@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-react",
-  "type": "registry:hook",
   "title": "CodeRabbit React Hook",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Uses server actions by default for secure API key handling in Next.js.",
@@ -24,5 +23,6 @@
   "categories": [
     "hooks",
     "react"
-  ]
+  ],
+  "type": "registry:hook"
 }

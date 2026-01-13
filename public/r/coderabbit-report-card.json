@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-report-card",
-  "type": "registry:component",
   "title": "CodeRabbit Report Card",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Display component for CodeRabbit reports with expandable cards, status badges, and markdown rendering. Supports Daily Standup, Sprint Report, and Release Notes formats.",
@@ -27,5 +26,6 @@
   "categories": [
     "reports",
     "components"
-  ]
+  ],
+  "type": "registry:component"
 }

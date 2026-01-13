@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-convex",
-  "type": "registry:block",
   "title": "CodeRabbit with Convex",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Complete CodeRabbit integration with Convex database. Includes real-time sync, auth support, and schema definitions. Perfect for production apps.",
@@ -25,6 +24,7 @@
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
   ],
+  "files": [],
   "envVars": {
     "CODERABBIT_API_KEY": "",
     "CONVEX_DEPLOYMENT": "",
@@ -35,5 +35,6 @@
     "complete",
     "database",
     "real-time"
-  ]
+  ],
+  "type": "registry:block"
 }

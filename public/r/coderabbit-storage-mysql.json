@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-mysql",
-  "type": "registry:lib",
   "title": "CodeRabbit MySQL Adapter",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "MySQL/MariaDB adapter with connection pooling. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
@@ -24,5 +23,6 @@
   "categories": [
     "storage",
     "database"
-  ]
+  ],
+  "type": "registry:lib"
 }

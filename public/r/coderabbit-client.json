@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-client",
-  "type": "registry:lib",
   "title": "CodeRabbit API Client",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Framework-agnostic CodeRabbit API client. Works in Node.js, Deno, Bun, Edge runtimes, and browsers. Single endpoint for generating developer activity reports with 10-minute timeout support.",
@@ -22,5 +21,6 @@
   "categories": [
     "api-client",
     "developer-tools"
-  ]
+  ],
+  "type": "registry:lib"
 }

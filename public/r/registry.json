@@ -286,6 +286,7 @@
       "title": "CodeRabbit with LocalStorage",
       "description": "Complete CodeRabbit integration with browser localStorage. Perfect for prototyping and client-side apps. No database required.",
       "categories": ["complete", "browser"],
+      "files": [],
       "dependencies": ["react", "lucide-react"],
       "registryDependencies": [
         "button",
@@ -314,6 +315,7 @@
       "title": "CodeRabbit with Convex",
       "description": "Complete CodeRabbit integration with Convex database. Includes real-time sync, auth support, and schema definitions. Perfect for production apps.",
       "categories": ["complete", "database", "real-time"],
+      "files": [],
       "dependencies": ["react", "lucide-react", "convex"],
       "registryDependencies": [
         "button",
@@ -344,6 +346,7 @@
       "title": "CodeRabbit with Supabase",
       "description": "Complete CodeRabbit integration with Supabase (PostgreSQL). Includes Row Level Security policies. Perfect for apps with authentication.",
       "categories": ["complete", "database"],
+      "files": [],
       "dependencies": ["react", "lucide-react", "@supabase/supabase-js"],
       "registryDependencies": [
         "button",
@@ -374,6 +377,7 @@
       "title": "CodeRabbit with PostgreSQL",
       "description": "Complete CodeRabbit integration with PostgreSQL. Works with Neon, Vercel Postgres, Railway, AWS RDS, etc.",
       "categories": ["complete", "database"],
+      "files": [],
       "dependencies": ["react", "lucide-react", "pg", "@types/pg"],
       "registryDependencies": [
         "button",
@@ -407,6 +411,7 @@
       "title": "CodeRabbit with MySQL",
       "description": "Complete CodeRabbit integration with MySQL/MariaDB. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
       "categories": ["complete", "database"],
+      "files": [],
       "dependencies": ["react", "lucide-react", "mysql2", "@types/mysql2"],
       "registryDependencies": [
         "button",

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-localstorage",
-  "type": "registry:block",
   "title": "CodeRabbit with LocalStorage",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Complete CodeRabbit integration with browser localStorage. Perfect for prototyping and client-side apps. No database required.",
@@ -24,6 +23,7 @@
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
     "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
   ],
+  "files": [],
   "envVars": {
     "CODERABBIT_API_KEY": ""
   },
@@ -31,5 +31,6 @@
   "categories": [
     "complete",
     "browser"
-  ]
+  ],
+  "type": "registry:block"
 }

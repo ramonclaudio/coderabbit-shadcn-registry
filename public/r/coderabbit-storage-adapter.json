@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coderabbit-storage-adapter",
-  "type": "registry:lib",
   "title": "CodeRabbit Storage Adapter Interface",
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "TypeScript interface for implementing custom storage backends. Implement this to add support for any database.",
@@ -18,5 +17,6 @@
   "categories": [
     "storage",
     "database"
-  ]
+  ],
+  "type": "registry:lib"
 }
