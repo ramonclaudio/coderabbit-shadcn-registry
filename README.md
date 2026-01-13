@@ -178,10 +178,10 @@ class MyAdapter implements ReportStorageAdapter {
 ## Development
 
 ```bash
-npm install
-npm run registry:build
-npm run typecheck
-npm run format
+pnpm install
+pnpm run registry:build
+pnpm run typecheck
+pnpm run format
 ```
 
 ## License
