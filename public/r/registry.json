@@ -1,11 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "coderabbit",
-  "homepage": "https://github.com/RMNCLDYO/coderabbit-shadcn-registry",
+  "homepage": "https://github.com/ramonclaudio/coderabbit-shadcn-registry",
   "items": [
     {
       "name": "coderabbit-types",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit Types",
       "description": "Pure TypeScript types for CodeRabbit API integration. Framework-agnostic type definitions with zero dependencies.",
@@ -19,13 +19,13 @@
     },
     {
       "name": "coderabbit-client",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit API Client",
       "description": "Framework-agnostic CodeRabbit API client. Works in Node.js, Deno, Bun, Edge runtimes, and browsers. Single endpoint for generating developer activity reports with 10-minute timeout support.",
       "categories": ["api-client", "developer-tools"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -40,13 +40,13 @@
     },
     {
       "name": "coderabbit-storage-adapter",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit Storage Adapter Interface",
       "description": "TypeScript interface for implementing custom storage backends. Implement this to add support for any database.",
       "categories": ["storage", "database"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -57,14 +57,14 @@
     },
     {
       "name": "coderabbit-storage-localstorage",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit LocalStorage Adapter",
       "description": "Browser localStorage adapter for CodeRabbit reports. Perfect for client-side apps and prototyping. No database required.",
       "categories": ["storage", "browser"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -76,15 +76,15 @@
     },
     {
       "name": "coderabbit-storage-convex",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit Convex Adapter",
       "description": "Convex database adapter with real-time sync and auth support. Includes schema definitions for the reports table.",
       "categories": ["storage", "database", "real-time"],
       "dependencies": ["convex"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -101,15 +101,15 @@
     },
     {
       "name": "coderabbit-storage-supabase",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit Supabase Adapter",
       "description": "Supabase (PostgreSQL) adapter with Row Level Security support. Includes SQL schema and RLS policies.",
       "categories": ["storage", "database"],
       "dependencies": ["@supabase/supabase-js"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -121,15 +121,15 @@
     },
     {
       "name": "coderabbit-storage-postgres",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit PostgreSQL Adapter",
       "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
       "categories": ["storage", "database"],
       "dependencies": ["pg", "@types/pg"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -141,15 +141,15 @@
     },
     {
       "name": "coderabbit-storage-mysql",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit MySQL Adapter",
       "description": "MySQL/MariaDB adapter with connection pooling. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
       "categories": ["storage", "database"],
       "dependencies": ["mysql2", "@types/mysql2"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -161,14 +161,14 @@
     },
     {
       "name": "coderabbit-actions",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
       "title": "CodeRabbit Server Actions",
       "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
       "categories": ["nextjs", "server-actions"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
       ],
       "files": [
         {
@@ -180,17 +180,17 @@
     },
     {
       "name": "coderabbit-react",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:hook",
       "title": "CodeRabbit React Hook",
       "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Uses server actions by default for secure API key handling in Next.js.",
       "categories": ["hooks", "react"],
       "dependencies": ["react"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
       ],
       "files": [
         {
@@ -201,7 +201,7 @@
     },
     {
       "name": "coderabbit-report-form",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:component",
       "title": "CodeRabbit Report Form",
       "description": "Full-featured form component for collecting report parameters. Includes template selection, custom prompts, filters, and grouping options.",
@@ -213,7 +213,7 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -224,7 +224,7 @@
     },
     {
       "name": "coderabbit-branding",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:component",
       "title": "CodeRabbit Branding",
       "description": "CodeRabbit logo and icon components with dark/light theme support. Includes SVG assets.",
@@ -259,7 +259,7 @@
     },
     {
       "name": "coderabbit-report-card",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:component",
       "title": "CodeRabbit Report Card",
       "description": "Display component for CodeRabbit reports with expandable cards, status badges, and markdown rendering. Supports Daily Standup, Sprint Report, and Release Notes formats.",
@@ -269,8 +269,8 @@
         "button",
         "badge",
         "card",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
       ],
       "files": [
         {
@@ -281,7 +281,7 @@
     },
     {
       "name": "coderabbit-localstorage",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:block",
       "title": "CodeRabbit with LocalStorage",
       "description": "Complete CodeRabbit integration with browser localStorage. Perfect for prototyping and client-side apps. No database required.",
@@ -293,14 +293,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-localstorage.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-localstorage.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": ""
@@ -309,7 +309,7 @@
     },
     {
       "name": "coderabbit-convex",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:block",
       "title": "CodeRabbit with Convex",
       "description": "Complete CodeRabbit integration with Convex database. Includes real-time sync, auth support, and schema definitions. Perfect for production apps.",
@@ -321,14 +321,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-convex.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-convex.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -339,7 +339,7 @@
     },
     {
       "name": "coderabbit-supabase",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:block",
       "title": "CodeRabbit with Supabase",
       "description": "Complete CodeRabbit integration with Supabase (PostgreSQL). Includes Row Level Security policies. Perfect for apps with authentication.",
@@ -351,14 +351,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-supabase.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-supabase.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -369,7 +369,7 @@
     },
     {
       "name": "coderabbit-postgres",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:block",
       "title": "CodeRabbit with PostgreSQL",
       "description": "Complete CodeRabbit integration with PostgreSQL. Works with Neon, Vercel Postgres, Railway, AWS RDS, etc.",
@@ -381,14 +381,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-postgres.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-postgres.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -402,7 +402,7 @@
     },
     {
       "name": "coderabbit-mysql",
-      "author": "Ray <hi@rmncldyo.com>",
+      "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:block",
       "title": "CodeRabbit with MySQL",
       "description": "Complete CodeRabbit integration with MySQL/MariaDB. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
@@ -414,14 +414,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-mysql.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-mysql.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
+        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",

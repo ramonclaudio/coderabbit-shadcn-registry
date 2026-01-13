@@ -3,14 +3,14 @@
   "name": "coderabbit-storage-convex",
   "type": "registry:lib",
   "title": "CodeRabbit Convex Adapter",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "Convex database adapter with real-time sync and auth support. Includes schema definitions for the reports table.",
   "dependencies": [
     "convex"
   ],
   "registryDependencies": [
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
   ],
   "files": [
     {

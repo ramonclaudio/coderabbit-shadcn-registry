@@ -3,7 +3,7 @@
   "name": "coderabbit-branding",
   "type": "registry:component",
   "title": "CodeRabbit Branding",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "CodeRabbit logo and icon components with dark/light theme support. Includes SVG assets.",
   "dependencies": [
     "react"

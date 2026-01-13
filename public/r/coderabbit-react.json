@@ -3,16 +3,16 @@
   "name": "coderabbit-react",
   "type": "registry:hook",
   "title": "CodeRabbit React Hook",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Uses server actions by default for secure API key handling in Next.js.",
   "dependencies": [
     "react"
   ],
   "registryDependencies": [
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
   ],
   "files": [
     {

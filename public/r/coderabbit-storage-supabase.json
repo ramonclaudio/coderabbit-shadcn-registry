@@ -3,14 +3,14 @@
   "name": "coderabbit-storage-supabase",
   "type": "registry:lib",
   "title": "CodeRabbit Supabase Adapter",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "Supabase (PostgreSQL) adapter with Row Level Security support. Includes SQL schema and RLS policies.",
   "dependencies": [
     "@supabase/supabase-js"
   ],
   "registryDependencies": [
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
   ],
   "files": [
     {

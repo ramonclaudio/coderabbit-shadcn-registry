@@ -3,15 +3,15 @@
   "name": "coderabbit-storage-postgres",
   "type": "registry:lib",
   "title": "CodeRabbit PostgreSQL Adapter",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "PostgreSQL adapter with connection pooling. Works with Neon, Vercel Postgres, Railway, AWS RDS, Google Cloud SQL, etc.",
   "dependencies": [
     "pg",
     "@types/pg"
   ],
   "registryDependencies": [
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
   ],
   "files": [
     {

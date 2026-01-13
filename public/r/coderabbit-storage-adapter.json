@@ -3,10 +3,10 @@
   "name": "coderabbit-storage-adapter",
   "type": "registry:lib",
   "title": "CodeRabbit Storage Adapter Interface",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "TypeScript interface for implementing custom storage backends. Implement this to add support for any database.",
   "registryDependencies": [
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
   ],
   "files": [
     {

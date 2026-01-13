@@ -3,7 +3,7 @@
   "name": "coderabbit-report-card",
   "type": "registry:component",
   "title": "CodeRabbit Report Card",
-  "author": "Ray <hi@rmncldyo.com>",
+  "author": "Ray <hello@ramonclaudio.com>",
   "description": "Display component for CodeRabbit reports with expandable cards, status badges, and markdown rendering. Supports Daily Standup, Sprint Report, and Release Notes formats.",
   "dependencies": [
     "react",
@@ -14,8 +14,8 @@
     "button",
     "badge",
     "card",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/RMNCLDYO/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
+    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
   ],
   "files": [
     {
