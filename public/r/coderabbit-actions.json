@@ -5,8 +5,8 @@
   "author": "Ray <hello@ramonclaudio.com>",
   "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
   "registryDependencies": [
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json"
   ],
   "files": [
     {

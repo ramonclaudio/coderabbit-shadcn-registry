@@ -14,7 +14,7 @@
     "label",
     "select",
     "textarea",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json"
   ],
   "files": [
     {

@@ -13,8 +13,8 @@
     "button",
     "badge",
     "card",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json"
   ],
   "files": [
     {

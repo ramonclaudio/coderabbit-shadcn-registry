@@ -4,6 +4,26 @@
   "homepage": "https://github.com/ramonclaudio/coderabbit-shadcn-registry",
   "items": [
     {
+      "name": "coderabbit",
+      "author": "Ray <hello@ramonclaudio.com>",
+      "type": "registry:block",
+      "title": "CodeRabbit Core",
+      "description": "Core CodeRabbit integration with types, API client, server actions, and React hook. Add a storage adapter separately for persistence.",
+      "categories": ["api", "hooks", "developer-tools"],
+      "files": [],
+      "registryDependencies": [
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-actions.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json"
+      ],
+      "envVars": {
+        "CODERABBIT_API_KEY": ""
+      },
+      "docs": "Core CodeRabbit setup. Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Add a storage adapter (localstorage, convex, supabase, postgres, mysql) for report persistence."
+    },
+    {
       "name": "coderabbit-types",
       "author": "Ray <hello@ramonclaudio.com>",
       "type": "registry:lib",
@@ -25,7 +45,7 @@
       "description": "Framework-agnostic CodeRabbit API client. Works in Node.js, Deno, Bun, Edge runtimes, and browsers. Single endpoint for generating developer activity reports with 10-minute timeout support.",
       "categories": ["api-client", "developer-tools"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -46,7 +66,7 @@
       "description": "TypeScript interface for implementing custom storage backends. Implement this to add support for any database.",
       "categories": ["storage", "database"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -63,8 +83,8 @@
       "description": "Browser localStorage adapter for CodeRabbit reports. Perfect for client-side apps and prototyping. No database required.",
       "categories": ["storage", "browser"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -83,8 +103,8 @@
       "categories": ["storage", "database", "real-time"],
       "dependencies": ["convex"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -108,8 +128,8 @@
       "categories": ["storage", "database"],
       "dependencies": ["@supabase/supabase-js"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -128,8 +148,8 @@
       "categories": ["storage", "database"],
       "dependencies": ["pg", "@types/pg"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -148,8 +168,8 @@
       "categories": ["storage", "database"],
       "dependencies": ["mysql2", "@types/mysql2"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
       ],
       "files": [
         {
@@ -167,8 +187,8 @@
       "description": "Next.js server actions for CodeRabbit API. Handles API calls server-side where CODERABBIT_API_KEY is securely available.",
       "categories": ["nextjs", "server-actions"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json"
       ],
       "files": [
         {
@@ -187,10 +207,10 @@
       "categories": ["hooks", "react"],
       "dependencies": ["react"],
       "registryDependencies": [
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-actions.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-actions.json"
       ],
       "files": [
         {
@@ -213,7 +233,7 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json"
       ],
       "files": [
         {
@@ -269,8 +289,8 @@
         "button",
         "badge",
         "card",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json"
       ],
       "files": [
         {
@@ -294,14 +314,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-localstorage.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-localstorage.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": ""
@@ -323,14 +343,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-convex.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-convex.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -354,14 +374,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-supabase.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-supabase.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -385,14 +405,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-postgres.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-postgres.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",
@@ -419,14 +439,14 @@
         "label",
         "select",
         "textarea",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-mysql.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-        "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-mysql.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+        "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
       ],
       "envVars": {
         "CODERABBIT_API_KEY": "",

@@ -16,14 +16,14 @@
     "label",
     "select",
     "textarea",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-client.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-postgres.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-react.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-form.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-branding.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-report-card.json"
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-client.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-postgres.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-react.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-form.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-branding.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-report-card.json"
   ],
   "files": [],
   "envVars": {

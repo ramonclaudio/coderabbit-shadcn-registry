@@ -8,8 +8,8 @@
     "@supabase/supabase-js"
   ],
   "registryDependencies": [
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-types.json",
-    "https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-storage-adapter.json"
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-storage-adapter.json"
   ],
   "files": [
     {
