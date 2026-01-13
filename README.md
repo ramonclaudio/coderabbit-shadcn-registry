@@ -6,27 +6,27 @@
 
 **LocalStorage**
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-localstorage.json
+npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-localstorage.json
 ```
 
 **Convex**
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-convex.json
+npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-convex.json
 ```
 
 **Supabase**
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-supabase.json
+npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-supabase.json
 ```
 
 **PostgreSQL**
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-postgres.json
+npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-postgres.json
 ```
 
 **MySQL**
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/ramonclaudio/coderabbit-shadcn-registry/main/public/r/coderabbit-mysql.json
+npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit-mysql.json
 ```
 
 ## Setup
