@@ -188,7 +188,7 @@ class MyAdapter implements ReportStorageAdapter {
 pnpm install
 pnpm run registry:build
 pnpm run typecheck
-pnpm run format
+pnpm run lint
 ```
 
 ## License
