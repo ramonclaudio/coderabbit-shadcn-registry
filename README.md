@@ -31,17 +31,20 @@ npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/coderabbit
 
 ## Setup
 
-1. Get API key from [CodeRabbit Settings](https://app.coderabbit.ai/settings/api-keys) (requires Pro plan)
+> [!IMPORTANT]
+> CodeRabbit API requires a **Pro plan** subscription.
+
+1. Get API key from [CodeRabbit Settings](https://app.coderabbit.ai/settings/api-keys)
 
 2. Set environment variables:
 
-| Backend | Variables |
-|---------|-----------|
-| LocalStorage | `CODERABBIT_API_KEY` |
-| Convex | `CODERABBIT_API_KEY`, `CONVEX_DEPLOYMENT`, `CONVEX_URL` |
-| Supabase | `CODERABBIT_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY` |
-| PostgreSQL | `CODERABBIT_API_KEY`, `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DATABASE`, `POSTGRES_USER`, `POSTGRES_PASSWORD` |
-| MySQL | `CODERABBIT_API_KEY`, `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD` |
+| Backend      | Variables                                                                                                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------ |
+| LocalStorage | `CODERABBIT_API_KEY`                                                                                               |
+| Convex       | `CODERABBIT_API_KEY`, `CONVEX_DEPLOYMENT`, `CONVEX_URL`                                                            |
+| Supabase     | `CODERABBIT_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`                                                          |
+| PostgreSQL   | `CODERABBIT_API_KEY`, `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DATABASE`, `POSTGRES_USER`, `POSTGRES_PASSWORD`  |
+| MySQL        | `CODERABBIT_API_KEY`, `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`                 |
 
 ## Usage
 
@@ -77,7 +80,8 @@ function App() {
 }
 ```
 
-Swap `LocalStorageAdapter` for `ConvexStorageAdapter`, `SupabaseStorageAdapter`, `PostgresStorageAdapter`, or `MySQLStorageAdapter`.
+> [!TIP]
+> Swap `LocalStorageAdapter` for `ConvexStorageAdapter`, `SupabaseStorageAdapter`, `PostgresStorageAdapter`, or `MySQLStorageAdapter`.
 
 ### With UI Components
 
@@ -98,7 +102,8 @@ await generateReport({ from, to, ...payload });
 
 ### Full Example
 
-Complete `page.tsx` with form, generation, and report display:
+<details>
+<summary>Complete <code>page.tsx</code> with form, generation, and report display</summary>
 
 ```tsx
 'use client'
@@ -159,6 +164,8 @@ export default function ReportsPage() {
   )
 }
 ```
+
+</details>
 
 ## Custom Storage
 
