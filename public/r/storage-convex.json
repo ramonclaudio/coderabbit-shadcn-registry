@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "storage-convex",
+  "title": "CodeRabbit Convex Adapter",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "Convex database adapter with real-time sync and auth support. Includes schema definitions for the reports table.",
+  "dependencies": [
+    "convex"
+  ],
+  "registryDependencies": [
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/storage-convex.ts",
+      "content": "/**\n * Convex Storage Adapter\n * Real-time database adapter with auth support\n */\n\nimport type {\n  ReportStorageAdapter,\n  ListReportsResponse,\n} from '@/registry/default/lib/storage-adapter'\nimport type {\n  StoredReport,\n  ReportResult,\n} from '@/registry/default/lib/types'\n\n/**\n * Convex client interface - matches the ConvexReactClient API\n */\ninterface ConvexClient {\n  mutation<T>(functionReference: unknown, args: unknown): Promise<T>\n  query<T>(functionReference: unknown, args: unknown): Promise<T>\n}\n\n/**\n * Convex API structure for CodeRabbit reports\n * Users should pass their api.coderabbit object\n */\ninterface ConvexCodeRabbitApi {\n  coderabbit: {\n    createReport: unknown\n    updateReportSuccess: unknown\n    updateReportFailure: unknown\n    getReport: unknown\n    listReports: unknown\n    deleteReport: unknown\n  }\n}\n\n/**\n * Convex storage adapter\n * Uses Convex for real-time database with auth support\n *\n * Note: This adapter assumes you have:\n * - ConvexReactClient instance\n * - API functions defined in convex/coderabbit.ts\n */\nexport class ConvexStorageAdapter implements ReportStorageAdapter {\n  constructor(\n    private client: ConvexClient,\n    private api: ConvexCodeRabbitApi,\n  ) {}\n\n  async create(data: Omit<StoredReport, 'id' | 'createdAt'>): Promise<string> {\n    return await this.client.mutation(this.api.coderabbit.createReport, data)\n  }\n\n  async updateSuccess(\n    id: string,\n    results: ReportResult[],\n    durationMs: number,\n  ): Promise<void> {\n    await this.client.mutation(this.api.coderabbit.updateReportSuccess, {\n      id,\n      results,\n      durationMs,\n    })\n  }\n\n  async updateFailure(\n    id: string,\n    error: string,\n    durationMs: number,\n  ): Promise<void> {\n    await this.client.mutation(this.api.coderabbit.updateReportFailure, {\n      id,\n      error,\n      durationMs,\n    })\n  }\n\n  async get(id: string): Promise<StoredReport | null> {\n    return await this.client.query(this.api.coderabbit.getReport, { id })\n  }\n\n  async list(options?: {\n    limit?: number\n    offset?: number\n  }): Promise<ListReportsResponse> {\n    return await this.client.query(\n      this.api.coderabbit.listReports,\n      options ?? {},\n    )\n  }\n\n  async delete(id: string): Promise<void> {\n    await this.client.mutation(this.api.coderabbit.deleteReport, { id })\n  }\n}\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "registry/default/lib/storage-convex-schema.ts",
+      "content": "/**\n * CodeRabbit Schema for Convex\n * Generic schema that matches StoredReport interface from types.ts\n * Minimal and framework-agnostic - works with any database\n */\n\nimport { defineTable } from 'convex/server'\nimport { v } from 'convex/values'\n\n/**\n * CodeRabbit reports table schema\n * Use this exact table name: coderabbit_reports\n */\nexport const coderabbitReportsTable = defineTable({\n  fromDate: v.string(),\n  toDate: v.string(),\n  prompt: v.optional(v.string()),\n  promptTemplate: v.optional(v.string()),\n  customPrompt: v.optional(v.string()),\n  groupBy: v.optional(v.string()),\n  subgroupBy: v.optional(v.string()),\n  orgId: v.optional(v.string()),\n  parameters: v.optional(\n    v.array(\n      v.object({\n        parameter: v.string(),\n        operator: v.string(),\n        values: v.array(v.string()),\n      }),\n    ),\n  ),\n  results: v.array(\n    v.object({\n      group: v.string(),\n      report: v.string(),\n    }),\n  ),\n  status: v.union(\n    v.literal('pending'),\n    v.literal('completed'),\n    v.literal('failed'),\n  ),\n  error: v.optional(v.string()),\n  createdAt: v.number(),\n  durationMs: v.optional(v.number()),\n})\n  .index('by_status', ['status'])\n  .index('by_created_at', ['createdAt'])\n\n/**\n * Add to your convex/schema.ts in your application:\n *\n * import { coderabbitReportsTable } from './coderabbit-schema'\n *\n * export default defineSchema({\n *   coderabbit_reports: coderabbitReportsTable,\n *   // ... your other tables\n * })\n *\n * IMPORTANT: Use the exact table name 'coderabbit_reports'\n */\n",
+      "type": "registry:file",
+      "target": "~/convex/coderabbit-schema.ts"
+    }
+  ],
+  "docs": "Import coderabbitReportsTable in your convex/schema.ts and add as 'coderabbit_reports' table. Pass ConvexReactClient instance and api to ConvexStorageAdapter constructor.",
+  "categories": [
+    "storage",
+    "database",
+    "real-time"
+  ],
+  "type": "registry:lib"
+}

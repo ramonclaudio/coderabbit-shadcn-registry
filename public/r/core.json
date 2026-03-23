@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "core",
+  "title": "CodeRabbit Core",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "Core CodeRabbit integration with types, API client, server actions, and React hook. Add a storage adapter separately for persistence.",
+  "registryDependencies": [
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/client.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/actions.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/react.json"
+  ],
+  "files": [],
+  "envVars": {
+    "CODERABBIT_API_KEY": ""
+  },
+  "docs": "Core CodeRabbit setup. Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Add a storage adapter (localstorage, convex, supabase, postgres, mysql) for report persistence.",
+  "categories": [
+    "api",
+    "hooks",
+    "developer-tools"
+  ],
+  "type": "registry:block"
+}

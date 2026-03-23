@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "react",
+  "title": "CodeRabbit React Hook",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "React hook for generating CodeRabbit reports with built-in loading and error states. Uses server actions by default for secure API key handling in Next.js.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/client.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/actions.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/hooks/use-coderabbit.ts",
+      "content": "import { useState, useCallback, useEffect } from 'react'\nimport { createCodeRabbitClient } from '@/registry/default/lib/client'\nimport {\n  checkCodeRabbitConfig,\n  generateReportAction,\n} from '@/registry/default/lib/actions'\nimport type {\n  ReportGenerateRequest,\n  ReportResult,\n} from '@/registry/default/lib/types'\nimport type { ReportStorageAdapter } from '@/registry/default/lib/storage-adapter'\n\nexport interface UseCodeRabbitOptions {\n  apiKey?: string\n  storage?: ReportStorageAdapter\n  useServerAction?: boolean\n  onSuccess?: (reportId: string | null, results?: ReportResult[]) => void\n  onError?: (error: string) => void\n}\n\nexport interface UseCodeRabbitReturn {\n  generateReport: (request: ReportGenerateRequest) => Promise<string | null>\n  isGenerating: boolean\n  error: string | null\n  isConfigured: boolean\n  clearError: () => void\n}\n\nexport function useCodeRabbit(\n  options?: UseCodeRabbitOptions,\n): UseCodeRabbitReturn {\n  const [isGenerating, setIsGenerating] = useState(false)\n  const [error, setError] = useState<string | null>(null)\n  const [isConfigured, setIsConfigured] = useState(true) // Optimistic default\n\n  const useServerAction = options?.useServerAction !== false // Default to true\n\n  // Check configuration status on mount using server action\n  useEffect(() => {\n    if (useServerAction) {\n      checkCodeRabbitConfig().then(({ isConfigured }) => {\n        setIsConfigured(isConfigured)\n      })\n    } else {\n      // Client-side check (only works if apiKey is passed directly)\n      const client = createCodeRabbitClient({ apiKey: options?.apiKey })\n      setIsConfigured(client.isConfigured())\n    }\n  }, [useServerAction, options?.apiKey])\n\n  const clearError = useCallback(() => {\n    setError(null)\n  }, [])\n\n  const generateReport = useCallback(\n    async (request: ReportGenerateRequest): Promise<string | null> => {\n      setIsGenerating(true)\n      setError(null)\n\n      const startTime = Date.now()\n      let reportId: string | null = null\n\n      try {\n        // Create pending record if storage available\n        if (options?.storage) {\n          reportId = await options.storage.create({\n            fromDate: request.from,\n            toDate: request.to,\n            promptTemplate: request.promptTemplate,\n            prompt: request.prompt,\n            groupBy: request.groupBy,\n            subgroupBy: request.subgroupBy,\n            orgId: request.orgId,\n            parameters: request.parameters,\n            status: 'pending',\n            results: [],\n          })\n        }\n\n        let results: ReportResult[]\n\n        if (useServerAction) {\n          // Use server action (recommended for Next.js)\n          const response = await generateReportAction(request)\n          if (response.error) {\n            throw new Error(response.error)\n          }\n          results = response.data!\n        } else {\n          // Direct client-side API call (requires apiKey to be passed)\n          const client = createCodeRabbitClient({ apiKey: options?.apiKey })\n          results = await client.generateReport(request)\n        }\n\n        const durationMs = Date.now() - startTime\n\n        // Update with results if storage available\n        if (options?.storage && reportId) {\n          await options.storage.updateSuccess(reportId, results, durationMs)\n        }\n\n        // Call success callback\n        options?.onSuccess?.(reportId, results)\n\n        return reportId\n      } catch (err) {\n        const durationMs = Date.now() - startTime\n        const errorMsg = err instanceof Error ? err.message : String(err)\n\n        setError(errorMsg)\n\n        // Update with error if storage available\n        if (options?.storage && reportId) {\n          await options.storage.updateFailure(reportId, errorMsg, durationMs)\n        }\n\n        // Call error callback\n        options?.onError?.(errorMsg)\n\n        return null\n      } finally {\n        setIsGenerating(false)\n      }\n    },\n    [useServerAction, options],\n  )\n\n  return {\n    generateReport,\n    isGenerating,\n    error,\n    isConfigured,\n    clearError,\n  }\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "categories": [
+    "hooks",
+    "react"
+  ],
+  "type": "registry:hook"
+}

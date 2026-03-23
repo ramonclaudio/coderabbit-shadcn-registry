@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mysql",
+  "title": "CodeRabbit with MySQL",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "Complete CodeRabbit integration with MySQL/MariaDB. Works with PlanetScale, AWS RDS, Google Cloud SQL, Azure, etc.",
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/client.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-mysql.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/react.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/report-form.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/branding.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/report-card.json"
+  ],
+  "files": [],
+  "envVars": {
+    "CODERABBIT_API_KEY": "",
+    "MYSQL_HOST": "",
+    "MYSQL_PORT": "3306",
+    "MYSQL_DATABASE": "",
+    "MYSQL_USER": "",
+    "MYSQL_PASSWORD": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Run the SQL schema from storage-mysql.ts.",
+  "categories": [
+    "complete",
+    "database"
+  ],
+  "type": "registry:block"
+}

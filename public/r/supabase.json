@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "supabase",
+  "title": "CodeRabbit with Supabase",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "Complete CodeRabbit integration with Supabase (PostgreSQL). Includes Row Level Security policies. Perfect for apps with authentication.",
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea",
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/client.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-supabase.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/react.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/report-form.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/branding.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/report-card.json"
+  ],
+  "files": [],
+  "envVars": {
+    "CODERABBIT_API_KEY": "",
+    "SUPABASE_URL": "",
+    "SUPABASE_ANON_KEY": ""
+  },
+  "docs": "Get CODERABBIT_API_KEY from https://app.coderabbit.ai/settings/api-keys (requires Pro plan). Run the SQL schema from storage-supabase.ts.",
+  "categories": [
+    "complete",
+    "database"
+  ],
+  "type": "registry:block"
+}

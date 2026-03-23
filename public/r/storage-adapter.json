@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "storage-adapter",
+  "title": "CodeRabbit Storage Adapter Interface",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "TypeScript interface for implementing custom storage backends. Implement this to add support for any database.",
+  "registryDependencies": [
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/storage-adapter.ts",
+      "content": "/**\n * Storage Adapter Interface\n * Implement this interface to create custom storage backends for CodeRabbit reports\n */\n\nimport type {\n  StoredReport,\n  ReportResult,\n} from '@/registry/default/lib/types'\n\n/**\n * List reports response with pagination info\n */\nexport interface ListReportsResponse {\n  reports: StoredReport[]\n  total: number\n}\n\n/**\n * Report storage adapter interface\n *\n * Implement this interface to add support for any database or storage system:\n * - Convex, Supabase, Prisma, Drizzle\n * - PostgreSQL, MySQL, MongoDB\n * - localStorage, IndexedDB\n * - In-memory (testing)\n * - Custom APIs\n */\nexport interface ReportStorageAdapter {\n  /**\n   * Create a report record\n   * @returns The ID of the created report\n   */\n  create(data: Omit<StoredReport, 'id' | 'createdAt'>): Promise<string>\n\n  /**\n   * Update report with successful results\n   */\n  updateSuccess(\n    id: string,\n    results: ReportResult[],\n    durationMs: number,\n  ): Promise<void>\n\n  /**\n   * Update report with failure error\n   */\n  updateFailure(id: string, error: string, durationMs: number): Promise<void>\n\n  /**\n   * Get report by ID\n   * @returns Report or null if not found\n   */\n  get(id: string): Promise<StoredReport | null>\n\n  /**\n   * List all reports (with optional pagination)\n   * @returns Reports array and total count for pagination\n   */\n  list(options?: {\n    limit?: number\n    offset?: number\n  }): Promise<ListReportsResponse>\n\n  /**\n   * Delete report by ID\n   */\n  delete(id: string): Promise<void>\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "categories": [
+    "storage",
+    "database"
+  ],
+  "type": "registry:lib"
+}

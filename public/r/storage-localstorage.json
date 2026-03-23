@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "storage-localstorage",
+  "title": "CodeRabbit LocalStorage Adapter",
+  "author": "Ray <hello@ramonclaudio.com>",
+  "description": "Browser localStorage adapter for CodeRabbit reports. Perfect for client-side apps and prototyping. No database required.",
+  "registryDependencies": [
+    "https://coderabbit-shadcn-registry.vercel.app/r/types.json",
+    "https://coderabbit-shadcn-registry.vercel.app/r/storage-adapter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/storage-localstorage.ts",
+      "content": "/**\n * LocalStorage Storage Adapter\n * Perfect for browser-based apps and client-side persistence\n */\n\nimport type {\n  ReportStorageAdapter,\n  ListReportsResponse,\n} from '@/registry/default/lib/storage-adapter'\nimport type {\n  StoredReport,\n  ReportResult,\n} from '@/registry/default/lib/types'\n\n/**\n * LocalStorage storage adapter\n * Persists reports in browser localStorage\n * Perfect for client-side apps and testing\n *\n * Note: This adapter is safe to instantiate during SSR but methods\n * will throw if called server-side. Use with useEffect or ensure\n * client-side only rendering.\n */\nexport class LocalStorageAdapter implements ReportStorageAdapter {\n  private key: string\n\n  constructor(key = 'coderabbit:reports') {\n    this.key = key\n  }\n\n  /**\n   * Ensure we're running in browser context\n   * @throws Error if localStorage is not available\n   */\n  private ensureBrowser(): void {\n    if (typeof window === 'undefined' || !window.localStorage) {\n      throw new Error(\n        'localStorage is not available in this environment. ' +\n          'Ensure this adapter is only used on the client side (e.g., inside useEffect).'\n      )\n    }\n  }\n\n  private getReports(): StoredReport[] {\n    this.ensureBrowser()\n    const data = localStorage.getItem(this.key)\n    return data ? JSON.parse(data) : []\n  }\n\n  private saveReports(reports: StoredReport[]): void {\n    this.ensureBrowser()\n    localStorage.setItem(this.key, JSON.stringify(reports))\n  }\n\n  async create(data: Omit<StoredReport, 'id' | 'createdAt'>): Promise<string> {\n    const reports = this.getReports()\n    const id = `report_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`\n\n    const report: StoredReport = {\n      id,\n      fromDate: data.fromDate,\n      toDate: data.toDate,\n      promptTemplate: data.promptTemplate,\n      prompt: data.prompt,\n      customPrompt: data.customPrompt,\n      groupBy: data.groupBy,\n      subgroupBy: data.subgroupBy,\n      orgId: data.orgId,\n      parameters: data.parameters,\n      results: data.results || [],\n      status: data.status || 'pending',\n      error: data.error,\n      durationMs: data.durationMs,\n      createdAt: Date.now(),\n    }\n\n    reports.push(report)\n    this.saveReports(reports)\n    return id\n  }\n\n  async updateSuccess(\n    id: string,\n    results: ReportResult[],\n    durationMs: number,\n  ): Promise<void> {\n    const reports = this.getReports()\n    const report = reports.find((r) => r.id === id)\n    if (!report) throw new Error(`Report not found: ${id}`)\n\n    report.results = results\n    report.status = 'completed'\n    report.durationMs = durationMs\n    this.saveReports(reports)\n  }\n\n  async updateFailure(\n    id: string,\n    error: string,\n    durationMs: number,\n  ): Promise<void> {\n    const reports = this.getReports()\n    const report = reports.find((r) => r.id === id)\n    if (!report) throw new Error(`Report not found: ${id}`)\n\n    report.status = 'failed'\n    report.error = error\n    report.durationMs = durationMs\n    this.saveReports(reports)\n  }\n\n  async get(id: string): Promise<StoredReport | null> {\n    const reports = this.getReports()\n    return reports.find((r) => r.id === id) ?? null\n  }\n\n  async list(options?: {\n    limit?: number\n    offset?: number\n  }): Promise<ListReportsResponse> {\n    const reports = this.getReports()\n    const sorted = reports.sort((a, b) => b.createdAt - a.createdAt)\n    const total = sorted.length\n\n    if (options) {\n      const start = options.offset ?? 0\n      const end = start + (options.limit ?? reports.length)\n      return { reports: sorted.slice(start, end), total }\n    }\n\n    return { reports: sorted, total }\n  }\n\n  async delete(id: string): Promise<void> {\n    const reports = this.getReports()\n    this.saveReports(reports.filter((r) => r.id !== id))\n  }\n\n  /**\n   * Clear all reports (useful for testing)\n   */\n  clear(): void {\n    this.ensureBrowser()\n    localStorage.removeItem(this.key)\n  }\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "docs": "Browser-only storage using localStorage. Data persists across sessions but is limited to ~5-10MB.",
+  "categories": [
+    "storage",
+    "browser"
+  ],
+  "type": "registry:lib"
+}
