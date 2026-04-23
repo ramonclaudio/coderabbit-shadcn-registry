@@ -1,10 +1,12 @@
 # CodeRabbit shadcn Registry
 
-[shadcn](https://ui.shadcn.com) registry for [CodeRabbit](https://coderabbit.ai) API integration.
+CodeRabbit was a sponsor of the TanStack Start hackathon. I built a reports integration into my [submission](https://github.com/ramonclaudio/tanstack-start-hackathon), then pulled it out, made it swappable across storage backends (localStorage, Convex, Supabase, Postgres, MySQL), and packaged it as a standalone shadcn registry.
 
-## Quick Start
+shadcn registry for [CodeRabbit](https://coderabbit.ai) API integration. Framework-agnostic client, storage adapters, and React components.
 
-Add the registry to your `components.json`:
+## Quick start
+
+Add the registry to `components.json`:
 
 ```json
 {
@@ -14,26 +16,17 @@ Add the registry to your `components.json`:
 }
 ```
 
-Then install with your storage backend:
+Install with your preferred storage backend:
 
 ```bash
-# LocalStorage (no database required)
-npx shadcn@latest add @ramonclaudio-coderabbit/localstorage
-
-# Convex
+npx shadcn@latest add @ramonclaudio-coderabbit/localstorage   # no DB
 npx shadcn@latest add @ramonclaudio-coderabbit/convex
-
-# Supabase
 npx shadcn@latest add @ramonclaudio-coderabbit/supabase
-
-# PostgreSQL
 npx shadcn@latest add @ramonclaudio-coderabbit/postgres
-
-# MySQL
 npx shadcn@latest add @ramonclaudio-coderabbit/mysql
 ```
 
-Or install directly via URL:
+Or via URL:
 
 ```bash
 npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/localstorage.json
@@ -41,24 +34,21 @@ npx shadcn@latest add https://coderabbit-shadcn-registry.vercel.app/r/localstora
 
 ## Setup
 
-> [!IMPORTANT]
-> CodeRabbit API requires a **Pro plan** subscription.
+CodeRabbit API requires a Pro plan. Get an API key from [CodeRabbit Settings](https://app.coderabbit.ai/settings/api-keys).
 
-1. Get API key from [CodeRabbit Settings](https://app.coderabbit.ai/settings/api-keys)
+Environment variables per backend:
 
-2. Set environment variables:
-
-| Backend      | Variables                                                                                                          |
-| ------------ | ------------------------------------------------------------------------------------------------------------------ |
-| LocalStorage | `CODERABBIT_API_KEY`                                                                                               |
-| Convex       | `CODERABBIT_API_KEY`, `CONVEX_DEPLOYMENT`, `CONVEX_URL`                                                            |
-| Supabase     | `CODERABBIT_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`                                                          |
-| PostgreSQL   | `CODERABBIT_API_KEY`, `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DATABASE`, `POSTGRES_USER`, `POSTGRES_PASSWORD`  |
-| MySQL        | `CODERABBIT_API_KEY`, `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`                 |
+| Backend | Variables |
+| --- | --- |
+| LocalStorage | `CODERABBIT_API_KEY` |
+| Convex | `CODERABBIT_API_KEY`, `CONVEX_DEPLOYMENT`, `CONVEX_URL` |
+| Supabase | `CODERABBIT_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY` |
+| PostgreSQL | `CODERABBIT_API_KEY`, `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DATABASE`, `POSTGRES_USER`, `POSTGRES_PASSWORD` |
+| MySQL | `CODERABBIT_API_KEY`, `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD` |
 
 ## Usage
 
-### Direct
+### Direct client
 
 ```typescript
 import { createCodeRabbitClient } from "@/lib/client";
@@ -71,7 +61,7 @@ const results = await client.generateReport({
 });
 ```
 
-### With React
+### React hook
 
 ```typescript
 import { useCodeRabbit } from "@/hooks/use-coderabbit";
@@ -90,94 +80,28 @@ function App() {
 }
 ```
 
-> [!TIP]
-> Swap `LocalStorageAdapter` for `ConvexStorageAdapter`, `SupabaseStorageAdapter`, `PostgresStorageAdapter`, or `MySQLStorageAdapter`.
+Swap `LocalStorageAdapter` for `ConvexStorageAdapter`, `SupabaseStorageAdapter`, `PostgresStorageAdapter`, or `MySQLStorageAdapter`.
 
-### With UI Components
+### UI components
 
 ```typescript
 import { CodeRabbitReportForm, getCodeRabbitReportPayload } from "@/components/report-form";
 import { CodeRabbitReportCard } from "@/components/report-card";
 
-// Form: controlled component for report parameters
+// Controlled form for report parameters
 <CodeRabbitReportForm value={formData} onChange={setFormData} />
 
 // Get API payload from form data
 const payload = getCodeRabbitReportPayload(formData);
 await generateReport({ from, to, ...payload });
 
-// Card: displays reports with expand/collapse and delete
+// Display reports with expand/collapse and delete
 <CodeRabbitReportCard reports={reports} onDelete={(id) => storage.delete(id)} />
 ```
 
-### Full Example
+## Custom storage adapter
 
-<details>
-<summary>Complete <code>page.tsx</code> with form, generation, and report display</summary>
-
-```tsx
-'use client'
-
-import { useState, useEffect, useMemo, useCallback } from 'react'
-import { useCodeRabbit } from '@/hooks/use-coderabbit'
-import { LocalStorageAdapter } from '@/lib/storage-localstorage'
-import { CodeRabbitReportCard } from '@/components/report-card'
-import {
-  CodeRabbitReportForm,
-  getCodeRabbitReportPayload,
-  getInitialFormData,
-  type CodeRabbitReportFormData,
-} from '@/components/report-form'
-import { Button } from '@/components/ui/button'
-import type { StoredReport } from '@/lib/types'
-
-export default function ReportsPage() {
-  const [reports, setReports] = useState<StoredReport[]>([])
-  const [formData, setFormData] = useState<CodeRabbitReportFormData>(getInitialFormData())
-
-  const storage = useMemo(() => new LocalStorageAdapter(), [])
-  const { generateReport, isGenerating, error } = useCodeRabbit({
-    storage,
-    onSuccess: () => loadReports(),
-  })
-
-  const loadReports = useCallback(async () => {
-    const { reports } = await storage.list()
-    setReports(reports)
-  }, [storage])
-
-  useEffect(() => {
-    loadReports()
-  }, [loadReports])
-
-  return (
-    <div className="max-w-4xl mx-auto p-8 space-y-8">
-      <CodeRabbitReportForm value={formData} onChange={setFormData} />
-
-      {error && <p className="text-red-500">{error}</p>}
-
-      <Button
-        onClick={() => generateReport(getCodeRabbitReportPayload(formData))}
-        disabled={isGenerating}
-      >
-        {isGenerating ? 'Generating...' : 'Generate Report'}
-      </Button>
-
-      <CodeRabbitReportCard
-        reports={reports}
-        onDelete={async (id) => {
-          await storage.delete(id)
-          loadReports()
-        }}
-      />
-    </div>
-  )
-}
-```
-
-</details>
-
-## Custom Storage
+Implement `ReportStorageAdapter`:
 
 ```typescript
 import type { ReportStorageAdapter } from "@/lib/storage-adapter";
@@ -198,9 +122,8 @@ class MyAdapter implements ReportStorageAdapter {
 pnpm install
 pnpm run registry:build
 pnpm run typecheck
-pnpm run lint
 ```
 
 ## License
 
-[MIT](./LICENSE)
+MIT
